@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'event-management-app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+      #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': 'underneath_systems',
-        'USER': 'jm',
+        'USER': 'underneath',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
