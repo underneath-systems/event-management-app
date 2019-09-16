@@ -29,7 +29,7 @@
         </div>
 		</div>
 		  <div class="message-body field">
-			  <form action="">
+			    <form action="" method="post"">
 				  <div class="columns">
 					  <div class="column">
 						  <label for="nombre" class="label">Nombre del evento: </label>
@@ -55,20 +55,20 @@
 							      <input type="date" class="input" placeholder="aaaa-mm-dd">
 						    </div>
 					  </div>
+					  <div class="column">
+						    <label for="fechaExp" class="label">Fecha de Termino: </label>
+						    <div class="control">
+							      <input type="date" class="input" placeholder="aaaa-mm-dd">
+						    </div>
+					  </div>
 
 				  </div>
 
 				  <div class="columns">
 					  <div class="column">
-						  <label for="email" class="label">Email del organizador: </label>
+						  <label for="email" class="label">Direccion: </label>
 						  <div class="control">
 							  <input type="email" class="input" placeholder="Correo electrónico">
-						  </div>
-					  </div>
-					  <div class="column">
-						  <label for="tel" class="label">Teléfono del organizador: </label>
-						  <div class="control">
-							  <input type="tel" class="input">
 						  </div>
 					  </div>
 				  </div>
@@ -87,44 +87,12 @@
 					  </div>
 				  </div>
 				  <div class="columns">
-					  <div class="column">
-						  <label for="fechaExp" class="label">Fecha de Expiración: </label>
-						  <div class="control">
-							  <input type="date" class="input" placeholder="aaaa-mm-dd">
-						  </div>
-					  </div>
-					  <div class="column">
-						  <label for="perfil" class="label">Perfil (Vista): </label>
-						  <div class="control has-icons-left">
-							  <div class="select"><select>
-							    <option>Usuario</option>
-							    <option>With options</option>
-							 </select></div>
-							 <div class="icon is-small is-left">
-								 <i class="fa fa-user"></i>
-							 </div>
-						  </div>
-					  </div>
-				  </div>
-				  <div class="columns">
-					  <div class="column">
-						  <label for="acceso" class="label">Días de duracion: </label>
-						  <div class="control">
-							  <input type="checkbox" name="domingo" value="Domingo"> Domingo<br>
-							  <input type="checkbox" name="lunes" value="Lunes"> Lunes<br>
-							  <input type="checkbox" name="martes" value="Martes"> Martes<br>
-							  <input type="checkbox" name="miercoles" value="Miercoles"> Miércoles<br>
-							  <input type="checkbox" name="jueves" value="Jueves"> Jueves<br>
-							  <input type="checkbox" name="viernes" value="Viernes"> Viernes<br>
-							  <input type="checkbox" name="sabado" value="Sabado"> Sábado<br>
-						  </div>
-					  </div>
 				  </div>
 				  <a class="button is-info" id="save">
 					  <span class="icon">
 						  <i class="fa fa-save"></i>
 					  </span>
-					  <span>Guardar</span>
+					  <span>Crear</span>
 				  </a>
 			  </form>
 		  </div>
