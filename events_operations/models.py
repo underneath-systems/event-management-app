@@ -29,13 +29,13 @@ class Event(models.Model):
             return '{} {}'.format(self.name, self.organizer)
 
 class Staff(models.Model):
-    idEmployee = models.ManyToManyField(Event)
-    name = models.CharField(max_length=20)
-
-class Category(models.Model):
-    idCategory = models.ManyToManyField(Event)
+    event = models.ManyToManyField(Event)
     name = models.CharField(max_length=20)
 
 class Tag(models.Model):
-    idTag = models.ManyToManyField(Event)
+    event = models.ManyToManyField(Event)
     name = models.CharField(max_length=20)
+
+# class Tag(models.Model):
+#     idTag = models.ManyToManyField(Event)
+#     name = models.CharField(max_length=20)
