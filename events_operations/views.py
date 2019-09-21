@@ -5,9 +5,9 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
 from events_operations.models import Event
-from django.views.generic import ListView, DetailView 
+from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages 
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
@@ -18,11 +18,29 @@ def event_create(request):
 		form = eventForm(request.POST)
 		if form.is_valid():
 			form.save()
-		return redirect('eventos')
+		return redirect('details')
 	else:
 		form = eventForm()
 	return render(request, 'event/event_form.html', {'form':form})
 
+def event_update(request, event_id):
+	event = Event.objects.get(pk=event_id)
+	if request.method == 'GET':
+		form = eventForm(instance=event)
+	else:
+		form = eventForm(request.POST, instance=event)
+		if form.is_valid():
+			form.save()
+		return redirect('details')
+	return render(request, 'event/event_form.html', {'form':form})
+
+
+def event_delete(request, event_id):
+	event = Event.objects.get(pk=event_id)
+	if request.method == 'POST':
+		event.delete()
+		return redirect('details')
+	return render(request, 'event/event_delete.html', {'event':event})
 
 def search(request):
     query = request.GET.get('q', '')
@@ -58,7 +76,10 @@ def write_organizer(request, idEvent):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
-class eventosListado(ListView): 
+
+
+
+class eventsList(ListView): 
     model = Event
 
 
@@ -81,42 +102,38 @@ class Create(CreateView):
     # fields = "__all__"
     success_message = 'Evento Creado Correctamente !'
     def get_success_url(self):
-        return reverse('eventos') # Redireccionamos a la vista principal 'leer'
-    # template = 'event/create2.html'
-    # context = {'title': 'create event'}
-
-    # def get(self, request):
-    #     """
-    #         Create a new event.
-    #     """
-    #     print("Creating event")
-    #     return render(request, self.template, self.context)
+        return reverse('details')
 
 
 class EventDetails(DetailView): 
     model = Event
 
 
-class UpdateEvent(SuccessMessageMixin, UpdateView): 
+class UpdateEvent(UpdateView): 
     model = Event
-    form = Event
-    fields = "__all__"  
-    success_message = 'Event Actualizado Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
+    form_class = eventForm
+    template_name = 'event/event_form.html'
+    success_url = reverse_lazy('details')
+    # success_message = 'Evento Actualizado Correctamente !'
+    # def get_success_url(self):
+    #     return reverse('details')
 
-    # Redireccionamos a la página principal luego de actualizar un registro o postre
-    def get_success_url(self):               
-        return reverse('leer') # Redireccionamos a la vista principal 'leer' 
 
-class CancelEvent(SuccessMessageMixin, DeleteView): 
-    model = Event
-    form = Event
-    fields = "__all__"     
+class CancelEvent(DeleteView):
+	model = Event
+	template_name = 'event/event_delete.html'
+	success_url = reverse_lazy('details')
 
-    # Redireccionamos a la página principal luego de eliminar un registro o postre
-    def get_success_url(self): 
-        success_message = 'Evento Eliminado Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
-        messages.success (self.request, (success_message))       
-        return reverse('leer') # Redireccionamos a la vista principal 'leer'
+# class CancelEvent(SuccessMessageMixin, DeleteView): 
+#     model = Event
+#     form = Event
+#     fields = "__all__"     
+
+#     # Redireccionamos a la página principal luego de eliminar un registro o postre
+#     def get_success_url(self): 
+#         success_message = 'Evento Eliminado Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
+#         messages.success (self.request, (success_message))       
+#         return reverse('leer') # Redireccionamos a la vista principal 'leer'
 
 
 
