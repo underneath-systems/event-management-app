@@ -78,6 +78,40 @@
                         <h2 class="subtitle">
                             $this is the best software platform for running an internet business. We handle billions of dollars every year for forward-thinking businesses around the world.
                         </h2>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>idEvent</th>
+                                    <th>name</th>
+                                    <th>organizer</th>
+                                    <th>start_date</th>
+                                    <th>end_date</th>
+                                    <th>start_time</th>
+                                    <th>end_time</th>
+                                    <th>address</th>
+                                    <th>eventCover</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in object_list %}
+                                <tr>
+                                    <td>{{ event.idEvent }}</td>
+                                    <td>{{ event.name }}</td>
+                                    <td>{{ event.organizer }}</td>
+                                    <td>{{ event.start_date }}</td>
+                                    <td>{{ event.end_date }}</td>
+                                    <td>{{ event.start_time }}</td>
+                                    <td>{{ event.end_time }}</td>
+                                    <td>{{ event.address }}</td>
+                                    <td>{{ event.eventCover }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="4">No hay events registradas</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
                         <div class="box">
                             <div class="field is-grouped">
                                 <p class="control is-expanded">
