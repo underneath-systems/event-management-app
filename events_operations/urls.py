@@ -3,6 +3,8 @@ from django.conf.urls import include, url
 from . import views
 from events_operations.views import *
 
+app_name = 'events_operations'
+
 urlpatterns = [
     # path('nuevo', PostresListado.as_view(template_name = "postres/index.html"), name='leer'),
     path('', views.mainEvents.as_view(), name='mainEvents'),

@@ -31,7 +31,7 @@ def event_update(request, event_id):
 		form = eventForm(request.POST, instance=event)
 		if form.is_valid():
 			form.save()
-		return redirect('details')
+		return redirect('events_operations:details')
 	return render(request, 'event/event_form.html', {'form':form})
 
 
@@ -39,7 +39,7 @@ def event_delete(request, event_id):
 	event = Event.objects.get(pk=event_id)
 	if request.method == 'POST':
 		event.delete()
-		return redirect('details')
+		return redirect('events_operations:details')
 	return render(request, 'event/event_delete.html', {'event':event})
 
 def search(request):
@@ -79,9 +79,11 @@ def write_organizer(request, idEvent):
 
 
 
-class eventsList(ListView): 
+class eventsList(ListView):
     model = Event
-
+    template_name = 'event/details.html'
+    # paginate_by = 2
+    ordering = ['id']
 
 class mainEvents(View):
     template = 'event/index.html'
@@ -113,7 +115,7 @@ class UpdateEvent(UpdateView):
     model = Event
     form_class = eventForm
     template_name = 'event/event_form.html'
-    success_url = reverse_lazy('details')
+    success_url = reverse_lazy('events_operations:details')
     # success_message = 'Evento Actualizado Correctamente !'
     # def get_success_url(self):
     #     return reverse('details')
