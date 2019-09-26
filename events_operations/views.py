@@ -104,7 +104,7 @@ class Create(CreateView):
     # fields = "__all__"
     success_message = 'Evento Creado Correctamente !'
     def get_success_url(self):
-        return reverse('details')
+        return reverse('events_operations:details')
 
 
 class EventDetails(DetailView): 
