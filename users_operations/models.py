@@ -15,13 +15,18 @@ class User(models.Model):
 
 class Attendees(User):
     qr_code = models.CharField(default = '', null = False, blank = False, max_length=20)
-    # event = models.ManyToManyField(Event)
+    def __str__(self):
+        return '{} {}'.format(self.name, self.email)
 
 
 class Organizer(User):
     # idOrganizer = models.UUIDField(default=uuid.uuid4, editable=False)
     phone = models.CharField(max_length=20)
+    def __str__(self):
+        return '{} {}'.format(self.name, self.email)
 
 
 class Staff(User):
     working_hours = models.IntegerField(default=8)
+    def __str__(self):
+        return '{} {}'.format(self.name, self.email)
