@@ -33,34 +33,16 @@
                                     Home
                                 </a>
                             <a class="navbar-item">
-                                    Team
-                                </a>
-                            <a class="navbar-item">
-                                    Eventos
+                                    {% if user.is_authenticated %}
+                                        Usuario: {{ user.get_username }}
+                                        <a href="{% url 'logout'%}?next={{request.path}}">Cerrar Sesion</a>   
+                                    {% else %}
+                                        <a href="{% url 'login'%}?next={{request.path}}">Iniciar Sesion</a>   
+                                    {% endif %}
                                 </a>
                             <a class="navbar-item">
                                     Ayuda
                                 </a>
-                            <div class="navbar-item has-dropdown is-hoverable">
-                                <a class="navbar-link">
-                                        Iniciar sesion
-                                    </a>
-                                <div class="navbar-dropdown">
-                                    <a class="navbar-item">
-                                            Dashboard
-                                        </a>
-                                    <a class="navbar-item">
-                                            Perfil
-                                        </a>
-                                    <a class="navbar-item">
-                                            Configuracion.
-                                        </a>
-                                    <hr class="navbar-divider">
-                                    <div class="navbar-item">
-                                        Cerrar sesion.
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
