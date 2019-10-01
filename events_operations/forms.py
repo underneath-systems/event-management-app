@@ -34,12 +34,12 @@ class eventForm(forms.ModelForm):
 			'name': forms.TextInput(attrs={'class':'form-control'}),
 			'description': forms.TextInput(attrs={'class':'form-control'}),
 			'organizer': forms.Select(attrs={'class':'form-control'}),
-			'start_date_time': forms.TextInput(attrs={'class':'form-control'}),
-			'end_date_time': forms.TextInput(attrs={'class':'form-control'}),
+			'start_date_time': forms.SelectDateWidget(),
+			'end_date_time': forms.SelectDateWidget(attrs={'class':'form-control'}),
 			'address': forms.TextInput(attrs={'class':'form-control'}),
-			'attendees_list': forms.CheckboxSelectMultiple(attrs={'class':'form-control'}),
-			'staff_list': forms.CheckboxSelectMultiple(attrs={'class':'form-control'}),
-			'tag': forms.CheckboxSelectMultiple(attrs={'class':'form-control'}),
+			'attendees_list': forms.SelectMultiple(attrs={'class':'form-control'}),
+			'staff_list': forms.SelectMultiple(attrs={'class':'form-control'}),
+			'tag': forms.SelectMultiple(attrs={'class':'form-control'}),
 			'capacity': forms.NumberInput(attrs={'class':'form-control'}),
 		}
 
