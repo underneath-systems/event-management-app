@@ -1,125 +1,126 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - Underneath Systems</title>
-  <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
-  <style type="text/css">
-   .hero.has-background {
-       position: relative;
-       overflow: hidden;
-   }
-   .hero-background {
-       position: absolute;
-       object-fit: cover;
-       object-position: center center;
-       width: 100%;
-       height: 100%;
-   }
-   .hero-background.is-transparent {
-       opacity: 0.7;
-   }
-   table-background-color:red;
-  </style>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Underneath Systems</title>
+    <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
+    <style type="text/css">
+      .hero.has-background {
+      position: relative;
+      overflow: hidden;
+      }
+      .hero-background {
+      position: absolute;
+      object-fit: cover;
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+      }
+      .hero-background.is-transparent {
+      opacity: 0.7;
+      }
+      table-background-color:red;
+    </style>
 
-</head>
-<body>
-  <section class="hero is-fullheight has-background">
-      <img alt="Concert" class="hero-background is-transparent" src="../../static/img/concert1.jpeg">
+  </head>
+  <body>
+    <section class="hero is-fullheight has-background">
+      <img alt="Concert" class="hero-background is-transparent" src="../../../static/img/concert1.jpeg">
       <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4">
-          <div class="box">
-            <p class="subtitle is-4 has-text-grey">Crea un nuevo evento!.</p><br>
-                {% block content %}
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="box">
-                        <div class="label">
-                            <div class="is-half">
-                                <label>Nombre</label>
-                                  {{ form.name }}  
+	<div class="container has-text-centered">
+          <div class="column is-4 is-offset-4">
+            <div class="box">
+              <p class="subtitle is-4 has-text-grey">Edita los siguientes campos!.</p><br>
+              {% block content %}
+              <form method="post">
+                {% csrf_token %}
+                <div class="box">
+                  <div class="label">
+                    <div class="is-half">
+                      <label>Nombre</label>
+                      {{ form.name }}  
 
-                                  <br>
-                                <label >Descripcion</label>
-                                {{ form.description }}
+                      <br>
+                      <label >Descripcion</label>
+                      {{ form.description }}
 
-                                <br>                                
-                                 <label >Nombre de organizador</label>
-                                {{ form.organizer }}
+                      <br>                                
+                      <label >Nombre de organizador</label>
+                      {{ form.organizer }}
 
-                                <br>                                
-                                <label >Fecha Inicio</label>
-                                {{ form.start_date_time }}
+                      <br>                                
+                      <label >Fecha Inicio</label>
+                      {{ form.start_date_time }}
 
-                                <br>                                
-                                 <label >Fecha Fin</label>
-                                {{ form.end_date_time }}
+                      <br>                                
+                      <label >Fecha Fin</label>
+                      {{ form.end_date_time }}
 
-                                <br>                                
-                                <label >Direccion</label>
-                                {{ form.address }}
+                      <br>                                
+                      <label >Direccion</label>
+                      {{ form.address }}
 
-                                <br>                                
-                                <label >Invitados</label>
-                                {{form.attendees_list}}
+                      <br>                                
+                      <label >Invitados</label>
+                      {{form.attendees_list}}
 
-                                <br>                                
-                                  <label >Staff</label>
-                                {{ form.staff_list }}
+                      <br>                                
+                      <label >Staff</label>
+                      {{ form.staff_list }}
 
-                                <br>                                
-                                <label >Etiqueta</label>
-                                {{ form.tag }}
+                      <br>                                
+                      <label >Etiqueta</label>
+                      {{ form.tag }}
 
-                                <br>                                
-                                <label >Capacidad</label>
-                                {{ form.capacity }}
-                                
-                            </div>
-                        </div>
-
+                      <br>                                
+                      <label >Capacidad</label>
+                      {{ form.capacity }}
+                      
                     </div>
+                  </div>
 
-                 
+                </div>
 
-                    
-                    
-            
+                
+
+                
+                
+		
                 
                 <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="form-group">
-                                <button class="btn btn-primary" type="submit">Guardar</button>
-                            </div>
-                        </div>
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                      <button class="btn btn-primary" type="submit">Guardar</button>
+		      <a class= "btn btn-default" href="{% url 'events_operations:details' %}">Cancelar</a>
                     </div>
-                </form>
-                {% endblock %}
+                  </div>
+                </div>
+              </form>
+              {% endblock %}
+            </div>
+            <p class="has-text-grey">
+              <a href="../">Ayuda?</a>
+            </p>
           </div>
-          <p class="has-text-grey">
-            <a href="../">Ayuda?</a>
-          </p>
-        </div>
+	</div>
       </div>
-    </div>
-    <!-- FOOTER -->
-    <div class="hero-foot">
-      <div class="container">
-        <div class="tabs is-centered">
-          <ul>
-            <li class="footer-text"><a href="https://github.com/underneath-systems/" style="color:white;">Made with  <i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems</a></li>
-          </ul>
-        </div>
+      <!-- FOOTER -->
+      <div class="hero-foot">
+	<div class="container">
+          <div class="tabs is-centered">
+            <ul>
+              <li class="footer-text"><a href="https://github.com/underneath-systems/" style="color:white;">Made with  <i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems</a></li>
+            </ul>
+          </div>
+	</div>
       </div>
-    </div>
-  </section>
-</body>
+    </section>
+  </body>
 </html>
 
 
