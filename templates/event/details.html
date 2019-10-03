@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <section class="hero is-primary is-fullheight has-background">
+    <section class="hero is-black is-fullheight has-background">
         <img alt="Fill Murray" class="hero-background is-transparent" src="../../static/img/concert3.jpeg" />
         <div class="hero-head">
             <nav class="navbar">
@@ -150,7 +150,7 @@
                                                 <td>
                                                     <a class="button is-small is-success is-fullwidth" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
                                                     <a class="button is-small is-danger is-fullwidth" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
-                                                    <a class="button is-small is-info is-fullwidth"  id="btn-abrir-popup" onclick="btnAbrirPopup();" >Detalles</a>
+                                                    <a class="button is-small is-info is-fullwidth"  id="btn-abrir-popup"  >Detalles</a>
                                                     <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:details'%}">Solicitar invitacion</a>
                                                 </td>
                                             </tr>
@@ -166,12 +166,18 @@
                     </div>
                 </div>
             </div>
+            <div class="hero-foot">
+                <div class="container">
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li class="footer-text"><a href="https://github.com/underneath-systems/" style="color:white;">Made with  <i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
         
-        <button id="btn-abrir-popup" class="btn-abrir-popup">Abrir Ventana Emergente</button>
-        <p>
-            <a class="btn-abrir-popup" href="#" role="button" id="btn-abrir-popup">texto_boton &raquo;</a>
-        </p>
+        
 
         <div class="overlay" id="overlay">
 			<div class="popup" id="popup">
