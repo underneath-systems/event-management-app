@@ -1,0 +1,64 @@
+#rectangle {
+  position: relative;
+  float: center;
+  font-size: 18px;
+  font-family: "Lucida Console", Monaco, monospace;
+  background-color: white;
+}
+
+#rectangle > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 10%;
+  background-color: transparent;
+  border-left: 1px solid transparent;
+  animation: Fwrite 3s steps(14, start) infinite, Wbar 0.5s step-end infinite;
+    -webkit-animation: Fwrite 3s steps(14, start) infinite, Wbar 0.5s step-end infinite;
+}
+
+#rectangle > p:hover {
+  animation-play-state: paused;
+}
+
+@keyframes Fwrite {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes Wbar {
+  0% {
+    border-left-color: transparent;
+  }
+  50% {
+    border-left-color: black;
+  }
+  100% {
+    border-left-color: transparent;
+  }
+}
+
+@-webkit-keyframes Fwrite {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes Wbar {
+  0% {
+    border-left-color: transparent;
+  }
+  50% {
+    border-left-color: black;
+  }
+  100% {
+    border-left-color: transparent;
+  }
+}
