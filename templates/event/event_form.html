@@ -22,7 +22,7 @@
       height: 100%;
       }
       .hero-background.is-transparent {
-      opacity: 0.7;
+      opacity: 1.0;
       }
       table-background-color:red;
     </style>
@@ -30,12 +30,12 @@
   </head>
   <body>
     <section class="hero is-fullheight has-background">
-      <img alt="Concert" class="hero-background is-transparent" src="../../../static/img/concert1.jpeg">
+      <img alt="Concert" class="hero-background is-transparent" src="../../../static/img/concert11.jpeg">
       <div class="hero-body">
 	<div class="container has-text-centered">
           <div class="column is-4 is-offset-4">
             <div class="box">
-              <p class="subtitle is-4 has-text-grey">Edita los siguientes campos!.</p><br>
+              <p class="subtitle is-4 has-text-grey">Edita los siguientes campos!</p><br>
               {% block content %}
               <form method="post">
                 {% csrf_token %}
@@ -87,16 +87,16 @@
                 </div>
 
                 
-
-                
-                
 		
                 
                 <div class="row">
                   <div class="col-md-8 col-md-offset-2">
                     <div class="form-group">
-                      <button class="btn btn-primary" type="submit">Guardar</button>
-		      <a class= "btn btn-default" href="{% url 'events_operations:details' %}">Cancelar</a>
+                    
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+	
+	
+                        <a class= "btn btn-default" href="{% url 'events_operations:details' %}">Cancelar</a>
                     </div>
                   </div>
                 </div>
