@@ -100,8 +100,8 @@
                         <section class="section">
                             <div class="columns is-centered">
                                 <div class="column is-narrow">
-                                
-                                    <table bgcolor="#00FF00" class="table is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                                                                <!--is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth -->
+                                    <table bgcolor="#00FF00" class="table ">
                                         <thead>
                                             <tr class="is-selected">
                                                 <th>ID Evento</th>
@@ -124,7 +124,7 @@
                                                 <td>{{ event.id }}</td>
                                                 <td>{{ event.name }}</td>
                                                 <td>{{ event.description }}</td>
-                                                <td>{{ event.organizer }}</td>
+                                                <td>{{ event.organizer.email }}</td>
                                                 <td>{{ event.start_date_time }}</td>
                                                 <td>{{ event.end_date_time }}</td>
                                                 <td>{{ event.address }}</td>
@@ -150,7 +150,7 @@
                                                 <td>
                                                     <a class="button is-small is-success is-fullwidth" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
                                                     <a class="button is-small is-danger is-fullwidth" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
-                                                    <a class="button is-small is-info is-fullwidth"  id="btn-abrir-popup"  >Detalles</a>
+                                                    <a class="button is-small is-info is-fullwidth"  href="{% url 'events_operations:single_event' event.id %}"  >Detalles</a>
                                                     <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:details'%}">Solicitar invitacion</a>
                                                 </td>
                                             </tr>
