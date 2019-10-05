@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
 # Create your views here.
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
@@ -84,6 +85,23 @@ class eventsList(ListView):
     template_name = 'event/details.html'
     # paginate_by = 2
     ordering = ['id']
+
+class displaySingleEvent(View):
+    """
+        Displays just one event
+    """
+    template = 'event/single_event_details.html'
+    context = {}
+
+    def get(self, request, event_id):
+        """
+            GET in one event
+        """
+        event = get_object_or_404(Event, id=event_id)
+        self.context['event'] = event
+        self.context['title'] = str(event)
+        return render(request, self.template, self.context)
+
 
 class mainEvents(View):
     template = 'event/index.html'

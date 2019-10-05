@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <title>Event List</title>
     <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,6 +17,7 @@
     <!-- Bulma Version 0.7.5-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.5/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/landing.css">
+    <link rel="stylesheet" href="../../static/css/estilos.css">
     <style type="text/css">
             .hero.has-background {
                 position: relative;
@@ -33,7 +39,7 @@
 </head>
 
 <body>
-    <section class="hero is-primary is-fullheight has-background">
+    <section class="hero is-black is-fullheight has-background">
         <img alt="Fill Murray" class="hero-background is-transparent" src="../../static/img/concert3.jpeg" />
         <div class="hero-head">
             <nav class="navbar">
@@ -94,82 +100,113 @@
                         <section class="section">
                             <div class="columns is-centered">
                                 <div class="column is-narrow">
-                                    <table bgcolor="#00FF00" class="table is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-                            <thead>
-                                <tr class="is-selected">
-                                    <th>ID Evento</th>
-                                    <th>Nombre</th>
-                                    <th>Descripcion</th>
-                                    <th>Organizador</th>
-                                    <th>Fecha/Hora de Inicio</th>
-                                    <th>Fecha/Hora de Fin</th>
-                                    <th>Direccion</th>
-                                    <th>Lista de Invitados</th>
-                                    <th>Staff</th>
-                                    <td>Etiquetas</td>
-                                    <td>Capacidad</td>
-                                    <td>Acciones</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for event in object_list.all %}
-                                <tr>
-                                    <td>{{ event.id }}</td>
-                                    <td>{{ event.name }}</td>
-                                    <td>{{ event.description }}</td>
-                                    <td>{{ event.organizer }}</td>
-                                    <td>{{ event.start_date_time }}</td>
-                                    <td>{{ event.end_date_time }}</td>
-                                    <td>{{ event.address }}</td>
-                                    <td>
-                                        {% for attendee in event.attendees_list.all %}
-                                         <li>{{ attendee }}</li>
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% for staff in event.staff_list.all %}
-                                            <li>{{ staff }}</li>
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% for tag in event.tag.all %}
-                                            <li>{{ tag }}</li>
-                                        {% endfor %}
-                                    </td>
+                                <div class="box">
+                                                                <!--is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth -->
+                                    <table bgcolor="#00FF00" class="table"  is-bordered is-striped is-narrow is-hoverable >
+                                        <thead>
+                                            <tr >
+                                                <th>ID Evento</th>
+                                                <th>Nombre</th>
+                                                <th>Descripcion</th>
+                                                <th>Organizador</th>
+                                                <th>Fecha/Hora de Inicio</th>
+                                                <th>Fecha/Hora de Fin</th>
+                                                <th>Direccion</th>
+                                                <!-- <th>Lista de Invitados</th> -->
+                                                <!-- <th>Staff</th> -->
+                                                <!-- <td>Etiquetas</td> -->
+                                                <td>Boletos</td>
+                                                <td>Acciones</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for event in object_list.all %}
+                                            <tr>
+                                                <td>{{ event.id }}</td>
+                                                <td>{{ event.name }}</td>
+                                                <td>{{ event.description }}</td>
+                                                <td>{{ event.organizer.email }}</td>
+                                                <td>{{ event.start_date_time }}</td>
+                                                <td>{{ event.end_date_time }}</td>
+                                                <td>{{ event.address }}</td>
+                                                <!-- <td> -->
+                                                <!-- {% for attendee in event.attendees_list.all %} -->
+                                                <!-- <li>{{ attendee }}</li> -->
+                                                <!-- {% endfor %} -->
+                                                <!-- </td> -->
+                                                <!-- <td> -->
+                                                <!-- {% for staff in event.staff_list.all %} -->
+                                                <!-- <li>{{ staff }}</li> -->
+                                                <!-- {% endfor %} -->
+                                                <!-- </td> -->
+                                                <!-- <td> -->
+                                                <!-- {% for tag in event.tag.all %} -->
+                                                <!-- <li>{{ tag }}</li> -->
+                                                <!-- {% endfor %} -->
+                                                <!-- </td> -->
 
-                                    <td>{{ event.capacity }}</td>
-                                    <td>
-				                                <a class="button is-small is-success" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
-				                                <a class="button is-small is-danger" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
-			                              </td>
-                                </tr>
-                                {% empty %}
-                                <tr><td colspan="4">No hay eventos registrados</td></tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                        </div>
-                        </div>
+                                                <td>
+                                                    {% if event.capacity > event.attendees_list.all.count %}
+                                                                    <span class = "has-text-success">
+                                                                    Entradas disponibles!
+                                                                    </span>
+                                                    {% else %}
+                                                                    <span class = "has-text-danger">
+                                                                    Sin entradas disponibles.
+                                                                    </span>
+                                                    {% endif %}
+                                                    
+                                                   <!-- {{ event.capacity }} / {{ event.attendees_list.all.count }} -->
+                                                </td>
+                                                <td>
+                                                    <a class="button is-small is-success is-fullwidth" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
+                                                    <a class="button is-small is-danger is-fullwidth" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
+                                                    <a class="button is-small is-info is-fullwidth"  href="{% url 'events_operations:single_event' event.id %}"  >Detalles</a>
+                                                    <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:details'%}">Solicitar invitacion</a>
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr><td colspan="4">No hay eventos registrados</td></tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                            </div>
                         </section>
-                        <!-- <div class="box"> -->
-                        <!-- <div class="field is-grouped"> -->
-                        <!-- <p class="control is-expanded"> -->
-                        <!-- <input class="input" type="text" placeholder="Enter your email"> -->
-                        <!-- </p> -->
-                        <!-- <p class="control"> -->
-                        <!-- <a class="button is-info"> -->
-                        <!-- Notify Me -->
-                        <!-- </a> -->
-                                    <!-- </p> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-
                     </div>
                 </div>
             </div>
+            <div class="hero-foot">
+                <div class="container">
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li class="footer-text"><a href="https://github.com/underneath-systems/" style="color:white;">Made with  <i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
 
-    </section>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
+        <div class="overlay" id="overlay">
+			<div class="popup" id="popup">
+				<a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+				<h3>LOL</h3>
+				<h4>LOL.</h4>
+				<form action="">
+					<div class="contenedor-inputs">
+						<input type="text" placeholder="Nombre">
+						<input type="email" placeholder="Correo">
+					</div>
+					<input type="submit" class="btn-submit" value="Suscribirse">
+				</form>
+			</div>
+        </div>
+        
+    <script async type="text/javascript" src="../../static/js/bulma.js"></script>
+    <script src="../../static/js/popup.js"></script>
 </body>
 
 </html>
