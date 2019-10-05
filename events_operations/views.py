@@ -13,16 +13,82 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
 from events_operations.forms import eventForm
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+# import requests 
 
 def event_create(request):
-	if request.method == 'POST':
-		form = eventForm(request.POST)
-		if form.is_valid():
-			form.save()
-		return redirect('details')
-	else:
-		form = eventForm()
-	return render(request, 'event/event_form.html', {'form':form})
+        if request.method == 'POST':
+                form = eventForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                        name = request.POST.get('name')
+                        description = request.POST.get('description')
+                        organizer = request.POST.get('organizer')
+                        start = request.POST.get('start_date_time')
+                        end = request.POST.get('end_date_time')
+                        address = request.POST.get('address')
+                        attendees = request.POST.getlist('attendees_list')
+                        staff = request.POST.get('staff_list')
+                        tag = request.POST.get('tag')
+                        capacity = request.POST.get('capacity')
+
+                        organizer_body = render_to_string(
+                        'event/email_event_creation_organizer.html', {
+                                'Nombre': name,
+                                'Descripcion': description,
+                                'Organizador': organizer,
+                                'FechaInicio': start,
+                                'FechaFin': end,
+                                'Direccion': address,
+                                'InvitadosIniciales': attendees,
+                                'Staff': staff,
+                                'Etiquetas': tag,
+                                'Capacidadmaxima': capacity
+                                },
+                        )
+
+
+                        attendees_body = render_to_string(
+                        'event/email_event_creation_attendees.html', {
+                                'Nombre': name,
+                                'Descripcion': description,
+                                'Organizador': organizer,
+                                'FechaInicio': start,
+                                'FechaFin': end,
+                                'Direccion': address,
+                                'InvitadosIniciales': attendees,
+                                'Staff': staff,
+                                'Etiquetas': tag,
+                                'Capacidadmaxima': capacity
+                                },
+                        )
+
+                        organizer_email_message = EmailMessage(
+                                subject= 'Nuevo evento creado!: ' + name + ' | Underneath Systems',
+                                body=organizer_body,
+                                from_email='sorgv.47@gmail.com',
+                                to=['sorgv.47@gmail.com'],
+                        )
+
+                        attendees_email_message = EmailMessage(
+                                subject= 'Te han invitado a un evento!: '+name+ ' | Underneath Systems',
+                                body=organizer_body,
+                                from_email='sorgv.47@gmail.com',
+                                to=['sorgv.47@gmail.com'],
+                        )
+
+                        organizer_email_message.content_subtype = 'html'
+                        attendees_email_message.content_subtype = 'html'
+                        organizer_email_message.send()
+                        attendees_email_message.send()
+                        print("------Enviando notificaciones por email------")
+                return redirect('events_operations:details')
+        else:
+                form = eventForm()
+        return render(request, 'event/event_form.html', {'form':form})
+
+
 
 def event_update(request, event_id):
 	event = Event.objects.get(pk=event_id)
@@ -115,14 +181,20 @@ class mainEvents(View):
         return render(request, self.template, self.context)
 
 
+
+
+
 class Create(CreateView):
     model = Event
     form_class = eventForm
     template_name = 'event/event_form.html'
     # fields = "__all__"
     success_message = 'Evento Creado Correctamente !'
+
     def get_success_url(self):
-        return reverse('events_operations:details')
+            messages.success(self.request, self.success_message)
+            print("Evento creado exitosamente")
+            return reverse('events_operations:details')
 
 
 class EventDetails(DetailView): 
