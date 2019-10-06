@@ -135,15 +135,13 @@ os.path.join(BASE_DIR, 'static'),
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = reverse_lazy('events_operations:details')
+LOGIN_REDIRECT_URL = reverse_lazy('Home')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
-# EMAIL_HOST_USER = 'underneath.systems@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Underneath.33'
-EMAIL_HOST_USER = 'sorgv.47@gmail.com'
-EMAIL_HOST_PASSWORD = '408027094'
+EMAIL_HOST_USER = 'underneath.systems@gmail.com'
+EMAIL_HOST_PASSWORD = 'underneath.33'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
