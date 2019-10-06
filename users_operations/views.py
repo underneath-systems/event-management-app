@@ -11,6 +11,11 @@ from django.contrib import messages
 from django.template import loader
 from django.views import generic
 from django import forms
+<<<<<<< HEAD
+=======
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+>>>>>>> 15534af6033dfbb4029909f50aa551500120a536
 
 class mainUsers(View):
     template = 'users/index.html'
@@ -23,6 +28,52 @@ class mainUsers(View):
         print("Main users page request")
         return render(request, self.template, self.context)
 
+<<<<<<< HEAD
+=======
+def register_attendee(request):
+        if request.method == 'POST':
+                form = attendeesForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                        name = request.POST.get('name')
+                        email = request.POST.get('email')
+                        password = request.POST.get('password')
+                        photo_id = request.POST.get('photo_id')
+                        qr_code = request.POST.get('qr_code')
+
+                        attendees_body = render_to_string(
+                        'event/email_event_creation_organizer.html', {
+                                'Nombre': name,
+                                'Email': email,
+                                'Password': password,
+                                'Fotografia': photo_id,
+                                'Codigo QR': qr_code,
+                                },
+                        )
+
+
+                        attendees_email_message = EmailMessage(
+                                subject= 'Te han invitado registrado como asistente!:  | Underneath Systems',
+                                body=organizer_body,
+                                from_email='sorgv.47@gmail.com',
+                                to=['sorgv.47@gmail.com'],
+                        )
+
+                        organizer_email_message.content_subtype = 'html'
+                        attendees_email_message.send()
+                        print("------Enviando notificaciones por email------")
+                return redirect('events_operations:details')
+        else:
+                form = eventForm()
+        return render(request, 'users/attendees_form.html', {'form':form})
+
+
+
+
+
+
+
+>>>>>>> 15534af6033dfbb4029909f50aa551500120a536
 class register_Attendee(CreateView):
     model = Attendees
     form_class = attendeesForm
@@ -52,6 +103,7 @@ class register_Staff(CreateView):
         return reverse('events_operations:details')
 
 
+<<<<<<< HEAD
 # def event_create(request):
 # 	if request.method == 'POST':
 # 		form = eventForm(request.POST)
@@ -159,3 +211,5 @@ class register_Staff(CreateView):
 #         success_message = 'Invitacion cancelada Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
 #         messages.success (self.request, (success_message))       
 #         return reverse('events') # Redireccionamos a la vista principal 'leer'
+=======
+>>>>>>> 15534af6033dfbb4029909f50aa551500120a536
