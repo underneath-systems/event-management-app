@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'event-management-app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+      #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': 'underneath_systems',
         'USER': 'underneath',
         'PASSWORD': 'password',
@@ -135,13 +135,24 @@ os.path.join(BASE_DIR, 'static'),
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+<<<<<<< HEAD
+LOGIN_REDIRECT_URL = reverse_lazy('events_operations:details')
+=======
 LOGIN_REDIRECT_URL = reverse_lazy('Home')
+>>>>>>> 15534af6033dfbb4029909f50aa551500120a536
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
+<<<<<<< HEAD
+# EMAIL_HOST_USER = 'underneath.systems@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Underneath.33'
+EMAIL_HOST_USER = 'sorgv.47@gmail.com'
+EMAIL_HOST_PASSWORD = '408027094'
+=======
 EMAIL_HOST_USER = 'underneath.systems@gmail.com'
 EMAIL_HOST_PASSWORD = 'Underneath.33'
+>>>>>>> 15534af6033dfbb4029909f50aa551500120a536
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

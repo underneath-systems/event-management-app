@@ -36,6 +36,23 @@
         <div class="column is-4 is-offset-4">
           <div class="box">
             <p class="subtitle is-4 has-text-grey">Para iniciar, porfavor inicia sesion.</p><br>
+<<<<<<< HEAD
+                 <div class="box">
+                    {% block body_content %}
+
+                        dfgs
+                        <h1> {{ event.name }} </h1>
+                        <div class="">
+                            {{ event.description }}
+                        </div>
+                        <div class="">
+                            <p>
+                                {{ event.address }}
+                            </p>
+                        </div>
+                        {% endblock %} 
+                </div>
+=======
           
           
           <form method="post"  action="{% url 'login' %}" >
@@ -65,6 +82,7 @@
             </form>
             
             
+>>>>>>> 15534af6033dfbb4029909f50aa551500120a536
           </div>
           <p class="has-text-grey">
             <a href="users">Registrarse</a> &nbsp;·&nbsp;
