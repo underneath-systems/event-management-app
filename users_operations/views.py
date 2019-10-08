@@ -37,7 +37,7 @@ def register_attendee(request):
                         qr_code = request.POST.get('qr_code')
 
                         attendees_body = render_to_string(
-                        'event/email_event_creation_organizer.html', {
+                        'users/email_attendee_registration.html', {
                                 'Nombre': name,
                                 'Email': email,
                                 'Password': password,
@@ -46,15 +46,14 @@ def register_attendee(request):
                                 },
                         )
 
-
                         attendees_email_message = EmailMessage(
-                                subject= 'Te han invitado registrado como asistente!:  | Underneath Systems',
-                                body=organizer_body,
+                                subject= 'Te han registrado como asistente en la plataforma!:  | Underneath Systems',
+                                body=attendees_body,
                                 from_email='sorgv.47@gmail.com',
                                 to=['sorgv.47@gmail.com'],
                         )
 
-                        organizer_email_message.content_subtype = 'html'
+                        attendees_email_message.content_subtype = 'html'
                         attendees_email_message.send()
                         print("------Enviando notificaciones por email------")
                 return redirect('events_operations:details')
@@ -62,6 +61,81 @@ def register_attendee(request):
                 form = eventForm()
         return render(request, 'users/attendees_form.html', {'form':form})
 
+
+
+def register_organizer(request):
+        if request.method == 'POST':
+                form = organizerForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                        name = request.POST.get('name')
+                        email = request.POST.get('email')
+                        password = request.POST.get('password')
+                        photo_id = request.POST.get('photo_id')
+                        phone = request.POST.get('phone')
+
+                        organizers_body = render_to_string(
+                        'users/email_organizers_registration.html', {
+                                'Nombre': name,
+                                'Email': email,
+                                'Password': password,
+                                'Fotografia': photo_id,
+                                'Telefono': phone,
+                                },
+                        )
+
+                        organizers_email_message = EmailMessage(
+                                subject= 'Tu registro como organizador esta completo! :  | Underneath Systems',
+                                body=organizers_body,
+                                from_email='underneath.systems@gmail.com',
+                                to=['sorgv.47@gmail.com'],
+                        )
+
+                        organizers_email_message.content_subtype = 'html'
+                        organizers_email_message.send()
+                        print("------Enviando notificaciones por email al organizador------")
+                return redirect('events_operations:details')
+        else:
+                form = organizerForm()
+        return render(request, 'users/organizer_form.html', {'form':form})
+
+
+
+def register_staff(request):
+        if request.method == 'POST':
+                form = staffForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                        name = request.POST.get('name')
+                        email = request.POST.get('email')
+                        password = request.POST.get('password')
+                        photo_id = request.POST.get('photo_id')
+                        working_hours = request.POST.get('working_hours')
+
+                        staff_body = render_to_string(
+                        'users/email_staff_registration.html', {
+                                'Nombre': name,
+                                'Email': email,
+                                'Password': password,
+                                'Fotografia': photo_id,
+                                'Horas disponibles': working_hours,
+                                },
+                        )
+
+                        staff_email_message = EmailMessage(
+                                subject=  name + ' Has sido registrado exitosamente como miembro del staff : ' +   '  | Underneath Systems',
+                                body=staff_body,
+                                from_email='underneath.systems@gmail.com',
+                                to=['sorgv.47@gmail.com'],
+                        )
+
+                        staff_email_message.content_subtype = 'html'
+                        staff_email_message.send()
+                        print("------Enviando notificaciones por email al staff------")
+                return redirect('events_operations:details')
+        else:
+                form = staffForm()
+        return render(request, 'users/staff_form.html', {'form':form})
 
 
 
