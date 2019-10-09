@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView, UpdateView
-from django.contrib.messages.views import SuccessMessageMixin 
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render,redirect
 from users_operations.models import *
@@ -58,7 +58,7 @@ def register_attendee(request):
                         print("------Enviando notificaciones por email------")
                 return redirect('events_operations:details')
         else:
-                form = eventForm()
+                form = attendeesForm()
         return render(request, 'users/attendees_form.html', {'form':form})
 
 
@@ -169,5 +169,3 @@ class register_Staff(CreateView):
     success_message = 'Staff creado correctamente !'
     def get_success_url(self):
         return reverse('events_operations:details')
-
-

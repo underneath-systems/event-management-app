@@ -22,7 +22,7 @@
        height: 100%;
    }
    .hero-background.is-transparent {
-       opacity: 0.3;
+       opacity: 1.3;
    }
    table-background-color:red;
   </style>
@@ -36,11 +36,11 @@
         <div class="column is-4 is-offset-4">
           <div class="box">
             <p class="subtitle is-4 has-text-grey">Para iniciar, porfavor inicia sesion.</p><br>
-          
-          
+
+
           <form method="post"  action="{% url 'login' %}" >
                 {% csrf_token %}
-                
+
                 <div>
                 <td>{{ form.username.label_tag }}</td>
                 <td>{{ form.username }}</td>
@@ -49,36 +49,26 @@
                 <td>{{ form.password.label_tag }}</td>
                 <td>{{ form.password }}</td>
                 </div>
-              
+
               <div class="field">
                 <label class="checkbox">
                   <input type="checkbox">
                   Recordarme
                 </label>
               </div>
-             
+
              <button class="button is-block is-info is-large is-fullwidth">Login</button><br>
               <p class="subtitle is-5">Inicia sesion con tus redes sociales </p>
-              <button class="facebook-button button is-medium"><i class="fab fa-facebook-f"></i></button>
-              <button class="twitter-button button is-medium"><i class="fab fa-twitter"></i></button>
               <button class="google-button button is-medium"><i class="fab fa-google-plus-g"></i></button>
             </form>
-            
-            
+
+
           </div>
           <p class="has-text-grey">
             <a href="users">Registrarse</a> &nbsp;·&nbsp;
             <a href="../">Recuperar contrasena</a> &nbsp;·&nbsp;
             <a href="../">Ayuda?</a>
           </p>
-          <div class="languages select is-small is-rounded">
-            <select>
-              <option selected>English</option>
-              <option>French</option>
-              <option>German</option>
-              <option>Italian</option>
-            </select>
-          </div>
         </div>
       </div>
     </div>
