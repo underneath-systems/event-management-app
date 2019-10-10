@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Single Event Details - Underneath Systems</title>
-  <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
-  <style type="text/css">
+	<head>
+		<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+					<title>Single Event Details - Underneath Systems</title>
+					<link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+						<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+							<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+							<!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
+							<style type="text/css">
    .hero.has-background {
        position: relative;
        overflow: hidden;
@@ -26,122 +26,158 @@
    }
    table-background-color:red;
   </style>
-
-</head>
-<body>
-  <section class="hero is-fullheight has-background">
-      <img alt="Concert" class="hero-background is-transparent" src="../../../static/img/concert8.jpeg">
-      
-       <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="/Home">
-                            <img src="../../../static/img/UnderneathLogo.png" alt="Logo">
-                        </a>
-                        <span class="navbar-burger burger" data-target="navbarMenu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </div>
-                    <div id="navbarMenu" class="navbar-menu">
-                        <div class="navbar-end">
-                            <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="/events/details">
-                                    <span class="icon">
-                                        <i class="fa fa-camera-retro fa-lg"></i>
-                                    </span>
-                                    <span>Regresar a todos los eventos</span>
-                                </a>
-                            </span>
-                            <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="#">
-                                    <span class="icon">
-                                        <i class="fa-info"></i>
-                                    </span>
-                                    <span>Ayuda</span>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            </div>
-      
-      <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-5 is-offset-4">
-            <div class="box  has-text-centered">
-            <p class="subtitle is-3 has-text-grey">Detalles del evento <strong> {{ event.name }}  </strong> .</p> <br>
-                <div class="box">
+						</head>
+						<body>
+							<section class="hero is-fullheight has-background">
+								<img alt="Concert" class="hero-background is-transparent" src="../../../static/img/concert8.jpeg">
+									<div class="hero-head">
+										<nav class="navbar">
+											<div class="container">
+												<div class="navbar-brand">
+													<a class="navbar-item" href="/Home">
+														<img src="../../../static/img/UnderneathLogo.png" alt="Logo">
+														</a>
+														<span class="navbar-burger burger" data-target="navbarMenu">
+															<span></span>
+															<span></span>
+															<span></span>
+														</span>
+													</div>
+													<div id="navbarMenu" class="navbar-menu">
+														<div class="navbar-end">
+															<span class="navbar-item">
+																<a class="button is-white is-outlined" href="/events/details">
+																	<span class="icon">
+																		<i class="fa fa-camera-retro fa-lg"></i>
+																	</span>
+																	<span>Regresar a todos los eventos</span>
+																</a>
+															</span>
+															<span class="navbar-item">
+																<a class="button is-white is-outlined" href="#">
+																	<span class="icon">
+																		<i class="fa-info"></i>
+																	</span>
+																	<span>Ayuda</span>
+																</a>
+															</span>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+										<div class="hero-body">
+											<div class="container has-text-centered">
+												<div class="column is-5 is-offset-4">
+													<div class="box  has-text-centered">
+														<p class="subtitle is-3 has-text-grey">Detalles del evento 
+															<strong> {{ event.name }}  </strong> .
+														</p>
+														<br>
+															<div class="box">
                                     {% block body_content %}
-                    <figure class="image is-128x128 is-half  ">
-                        <img align=center class="is-rounded" src="../../../static/img/concert4.jpeg">
-                    </figure>
                     
-                        <table style="width:100%" is-striped>
-                            <tr>
-                                <th>ID Evento:</th>
-                                <td> {{ event.id }}</td>
-                            </tr>
-                            <tr>
-                                <th>Nombre:</th>
-                                <td> {{ event.name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Descripcion:</th>
-                                <td> {{ event.description }}</td>
-                            </tr>
-                            <tr>
-                                <th>Organizador:</th>
-                                <td> {{ event.organizer }}</td>
-                            </tr>
-                            <tr>
-                                <th>Fecha/Hora de Inicio:</th>
-                                <td> {{ event.start_date_time }}</td>
-                            </tr>
-                            <tr>
-                                <th>Fecha/Hora de Fin:</th>
-                                <td> {{ event.end_date_time }}</td>
-                            </tr>
-                            <tr>
-                                <th>Direccion:</th>
-                                <td> {{ event.address }}</td>
-                            </tr>
-                            <tr>
-                                <th>Lista de Invitados:</th>
-                                <td>
+																<figure class="image is-128x128 is-half  ">
+																	<img align=center class="is-rounded" src="../../../static/img/concert4.jpeg">
+																	</figure>
+																	<table style="width:100%" is-striped>
+																		<tr>
+																			<th>ID Evento:</th>
+																			<td> {{ event.id }}</td>
+																		</tr>
+																		<tr>
+																			<th>Nombre:</th>
+																			<td> {{ event.name }}</td>
+																		</tr>
+																		<tr>
+																			<th>Descripcion:</th>
+																			<td> {{ event.description }}</td>
+																		</tr>
+																		<tr>
+																			<th>Organizador:</th>
+																			<td> {{ event.organizer }}</td>
+																		</tr>
+																		<tr>
+																			<th>Fecha/Hora de Inicio:</th>
+																			<td> {{ event.start_date_time }}</td>
+																		</tr>
+																		<tr>
+																			<th>Fecha/Hora de Fin:</th>
+																			<td> {{ event.end_date_time }}</td>
+																		</tr>
+																		<tr>
+																			<th>Direccion:</th>
+																			<td> {{ event.address }}</td>
+																		</tr>
+																		<tr>
+																			<th>Lista de Invitados:</th>
+																			<td>
                                         {% for attendee in event.attendees_list.all %}
-                                                 <li>{{ attendee }}</li> 
+                                                 
+																				<li>{{ attendee }}</li> 
                                         {% endfor %} 
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                                <th>Staff:</th>
-                                <td>
+                                
+																			</td>
+																		</tr>
+																		<tr>
+																			<th>Staff:</th>
+																			<td>
                                         {% for staff in event.staff_list.all %}
-                                                 <li>{{ staff }}</li> 
+                                                 
+																				<li>{{ staff }}</li> 
                                         {% endfor %} 
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                                <th>Etiquetas:</th>
-                                <td>
+                                
+																			</td>
+																		</tr>
+																		<tr>
+																			<th>Etiquetas:</th>
+																			<td>
                                         {% for tag in event.tag.all %}
-                                                 <li>{{ tag }}</li> 
+                                                 
+																				<li>{{ tag }}</li> 
                                         {% endfor %} 
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                                <th>Capacidad maxima/ Invitados actuales:</th>
-                                <td> {{ event.capacity }} / {{ event.attendees_list.all.count }}</td>
-                            </tr>
-                            
-                        </table>
+                                
+																			</td>
+																		</tr>
+																		<tr>
+																			<th>Capacidad maxima/ Invitados actuales:</th>
+																			<td> {{ event.capacity }} / {{ event.attendees_list.all.count }}</td>
+																		</tr>
+																		
+                                                                        <tr>
+																			<th>Compartir el redes sociales:</th>
+																			<td> 
+																			
+                                                                                    <div class="field has-addons">
+                                                                                        <p class="control">
+                                                                                            <a class="button">
+                                                                                                <span class="icon is-small">
+                                                                                                    <i class="fab fa-facebook-square"></i>
+                                                                                                </span>
+                                                                                                <span></span>
+                                                                                            </a>
+                                                                                        </p>
+                                                                                        <p class="control">
+                                                                                            <a class="button">
+                                                                                                <span class="icon is-small">
+                                                                                                    <i class="fab fa-twitter"></i>
+                                                                                                </span>
+                                                                                                <span></span>
+                                                                                            </a>
+                                                                                        </p>
+                                                                                        <p class="control">
+                                                                                            <a class="button">
+                                                                                                <span class="icon is-small">
+                                                                                                    <i class="fab fa-linkedin"></i>
+                                                                                                </span>
+                                                                                                <span></span>
+                                                                                            </a>
+                                                                                        </p>
+                                                                                </div>
+																			
+																			</td>
+																		</tr>
+																	</table>
                     
            
                     
@@ -150,90 +186,31 @@
                     {% endblock %} 
 
 
-                                            <div class=" box has-text-centered">
-                                                    <div class="field has-addons">
-                                                        <p class="control">
-                                                            <a class="button">
-                                                                <span class="icon is-small">
-                                                                    <i class="fab fa-facebook-square"></i>
-                                                                </span>
-                                                                <span></span>
-                                                            </a>
-                                                        </p>
-                                                        <p class="control">
-                                                            <a class="button">
-                                                                <span class="icon is-small">
-                                                                    <i class="fab fa-twitter"></i>
-                                                                </span>
-                                                                <span></span>
-                                                            </a>
-                                                        </p>
-                                                        <p class="control">
-                                                            <a class="button">
-                                                                <span class="icon is-small">
-                                                                    <i class="fab fa-linkedin"></i>
-                                                                </span>
-                                                                <span></span>
-                                                            </a>
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                            
+								
 
-
-        </div>
-
-        <button class="button">Center me</button>
-        <div class="buttons has-addons">
-            <span class="button">Yes</span>
-            <span class="button">Maybe</span>
-            <span class="button">No</span>
-        </div>
-        ppppo
-                                            <div class=" box has-text-centered">
-                                                    <div class="field has-addons">
-                                                        <p class="control">
-                                                            <a class="button">
-                                                                <span class="icon is-small">
-                                                                    <i class="fab fa-facebook-square"></i>
-                                                                </span>
-                                                                <span></span>
-                                                            </a>
-                                                        </p>
-                                                        <p class="control">
-                                                            <a class="button">
-                                                                <span class="icon is-small">
-                                                                    <i class="fab fa-twitter"></i>
-                                                                </span>
-                                                                <span></span>
-                                                            </a>
-                                                        </p>
-                                                        <p class="control">
-                                                            <a class="button">
-                                                                <span class="icon is-small">
-                                                                    <i class="fab fa-linkedin"></i>
-                                                                </span>
-                                                                <span></span>
-                                                            </a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-          </div>
-          
-  
-          
-        </div>
-      </div>
-    </div>
-    <!-- FOOTER -->
-    <div class="hero-foot">
-      <div class="container">
-        <div class="tabs is-centered">
-          <ul>
-            <li class="footer-text"><a href="https://github.com/underneath-systems/" style="color:white;">Made with  <i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
-</html>
+																		
+																		
+																	</div>
+																	
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- FOOTER -->
+												<div class="hero-foot">
+													<div class="container">
+														<div class="tabs is-centered">
+															<ul>
+																<li class="footer-text">
+																	<a href="https://github.com/underneath-systems/" style="color:white;">Made with  
+																		<i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</section>
+										</body>
+									</html>
