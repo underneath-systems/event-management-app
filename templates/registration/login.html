@@ -35,22 +35,8 @@
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
           <div class="box">
-            <p class="subtitle is-4 has-text-grey">Para iniciar, porfavor inicia sesion.</p><br>
-                 <div class="box">
-                    {% block body_content %}
-
-                        dfgs
-                        <h1> {{ event.name }} </h1>
-                        <div class="">
-                            {{ event.description }}
-                        </div>
-                        <div class="">
-                            <p>
-                                {{ event.address }}
-                            </p>
-                        </div>
-                        {% endblock %} 
-                </div>
+            <p class="subtitle is-4 has-text-grey">Para comenzar, porfavor inicia sesion.</p><br>
+  
           
           <form method="post"  action="{% url 'login' %}" >
                 {% csrf_token %}
