@@ -31,3 +31,13 @@ class Event(models.Model):
         # can use the below method also
         # queryset = self.__class__.objects.all()   
         return queryset
+
+
+class Assist(models.Model):
+    qr_code = models.CharField(default = '', null = False, blank = False, max_length=20)
+    user = models.ManyToManyField(Attendees)
+    event = models.ManyToManyField(Event)
+    confirm = models.BooleanField(default = False)
+    invitation = models.BooleanField()
+    def __str__(self):
+            return '{} {}'.format(self.user, self.event)

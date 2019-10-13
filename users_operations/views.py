@@ -13,6 +13,7 @@ from django.views import generic
 from django import forms
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from events_operations.models import Event, Assist
 
 class mainUsers(View):
     template = 'users/index.html'
@@ -170,3 +171,12 @@ class register_Staff(CreateView):
     def get_success_url(self):
         return reverse('events_operations:details')
 
+class invitationsList(ListView):
+    model = Assist
+    template_name = 'users/invitations.html'
+    ordering = ['id']
+
+class assistanceList(ListView):
+    model = Assist
+    template_name = 'users/assistance.html'
+    ordering = ['id']
