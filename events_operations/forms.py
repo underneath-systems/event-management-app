@@ -1,7 +1,7 @@
 from django import forms
 
 from events_operations.models import *
-
+from users_operations.models import User
 
 class eventForm(forms.ModelForm):
 
@@ -54,6 +54,24 @@ class eventForm(forms.ModelForm):
                                 msg = "Must put 'help' in subject when cc'ing yourself."
                                 self.add_error('capacity', msg)
                                 raise ValidationError('Capacidad maxima del evento excedida!')
+
+
+
+class sendInviteForm(forms.ModelForm):
+        class Meta:
+                model = User
+                # fields = '__all__'
+                # widgets = {'__all__':'required'}
+                fields = [
+                        'email',
+                ]
+                labels = {
+                        'email': 'Invitado',
+                }
+                # widgets = {
+                #         'email': forms.SelectMultiple(attrs={'class':'form-control'}),
+                # }
+
 
 
 class tagForm(forms.ModelForm):
