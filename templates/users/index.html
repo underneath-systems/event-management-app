@@ -1,10 +1,109 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.content {
+  position: sticky;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
 <body>
 
-<h1>Main Users</h1>
+<video autoplay muted loop id="myVideo">
+  <source src="../static/video/music.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
 
-<p>Paragraph.</p>
+<div class="content">
+  <h1>Bienvenido Usuario!</h1>
+  <p> En esta seccion puedes buscar y ver tus eventos.
+  </p>
+
+  <div class="columns">
+      <div class="column"> <a class="button is-black" onclick="window.location.href = 'assistance';" >Eventos asistidos. </a></div>
+      <div class="column"> <a class="button is-black" onclick="window.location.href = 'invitations';" >Eventos con invitación. </a></div>
+  </div>
+
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 search">
+      <form method="get">
+	<div id="custom-search-input">
+	  <div class="input-group col-md-12">
+	    <input type="text" class="form-control" placeholder="Buscar evento..." name="buscar">
+	    <span class="icon-group-list">
+	      <i class="icon icon-search"></i>
+	      <button type="submit" class="boton btn-success">Buscar</button>
+	    </span>
+	  </div>
+	</div>
+    </div>
+  </div>
+</div>
+
+<!--div class="section" >
+  <div class="box">
+    <div class="field has-addons">
+      <div class="control is-expanded">
+	<input class="input has-text-centered" type="search" placeholder="» » » » » » Buscar evento « « « « « «">
+      </div>
+      <div class="control">
+	<a class="button is-info">Search</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div-->
+
+
+
+<script>
+var video = document.getElementById("myVideo");
+</script>
 
 </body>
 </html>
