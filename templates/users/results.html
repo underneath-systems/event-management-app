@@ -57,11 +57,11 @@
                     <div id="navbarMenu" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="/events">
+                                <a class="button is-white is-outlined" href="/users">
                                     <span class="icon">
                                         <i class="fa fa-camera-retro fa-lg"></i>
                                     </span>
-                                    <span>Regresar a Eventos</span>
+                                    <span>Regresar a tu inicio</span>
                                 </a>
                             </span>
                             <span class="navbar-item">
@@ -95,7 +95,7 @@
                             Underneath Systems Event Details
                         </h1>
                         <h2 class="subtitle">
-                            Estos son los eventos que haz organizado ;).
+                            Resultados de la busqueda:
                         </h2>
                         <section class="section">
                             <div class="columns is-centered">
@@ -120,7 +120,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for event in object_list.all %}
+                                            {% for event in event.all %}
                                             <tr>
                                                 <td>{{ event.id }}</td>
                                                 <td>{{ event.name }}</td>
@@ -159,9 +159,6 @@
                                                    <!-- {{ event.capacity }} / {{ event.attendees_list.all.count }} -->
                                                 </td>
                                                 <td>
-                                                    <a class="button is-small is-success is-fullwidth" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
-                                                    <a class="button is-small is-danger is-fullwidth" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
-                                                    <a class="button is-small is-info is-fullwidth"  href="{% url 'events_operations:single_event' event.id %}"  >Detalles</a>
                                                     <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:send_invite' event.id %}">Solicitar invitacion</a>
                                                 </td>
                                             </tr>

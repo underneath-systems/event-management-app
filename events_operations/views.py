@@ -6,16 +6,16 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
 from events_operations.models import Event
+from users_operations.models import User
 from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages 
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
-from events_operations.forms import eventForm
+from events_operations.forms import eventForm, sendInviteForm
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-# import requests 
 
 def event_create(request):
         if request.method == 'POST':
@@ -188,6 +188,43 @@ def event_delete(request, event_id):
         return render(request, 'event/event_delete.html', {'event':event})
 
 
+
+def send_invite(request, event_id):
+        results = Event.objects.filter(pk=event_id)
+        for e in results:
+                print ( e.attendees_list.all())
+
+        if request.method == 'GET':
+                form = sendInviteForm()
+        else:
+                form = sendInviteForm(request.POST)
+                # form = sendInviteForm(request.POST, instance=users)
+                if form.is_valid():
+                        # form.save()
+                        attendee = request.POST.get('email')
+                        name = request.POST.get('email')
+
+                        invite_body = render_to_string(
+                        'event/email_event_update_organizer.html', {
+                                'Invitado': attendee,
+                                },
+                        )
+
+                        invite_email_message = EmailMessage(
+                                subject= 'Te estan invitando al evento: '+name+ '. | Underneath Systems',
+                                body=invite_body,
+                                from_email='underneath.systems@gmail.com',
+                                to=[attendee],
+                        )
+
+
+                        invite_email_message.content_subtype = 'html'
+                        invite_email_message.send()
+                        return redirect('events_operations:details')
+        return render(request, 'event/send_invite.html', {'form':form})
+
+
+
 class eventsList(ListView):
     model = Event
     template_name = 'event/details.html'
@@ -211,6 +248,7 @@ class displaySingleEvent(View):
         return render(request, self.template, self.context)
 
 
+
 class mainEvents(View):
     template = 'event/index.html'
     context = {'title': 'Events page'}
@@ -221,8 +259,6 @@ class mainEvents(View):
         """
         print("Main events page request")
         return render(request, self.template, self.context)
-
-
 
 
 

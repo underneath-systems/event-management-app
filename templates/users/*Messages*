@@ -1,0 +1,111 @@
+Loading 00debian-vars...done
+Loading /etc/emacs/site-start.d/50dictionaries-common.el (source)...
+Loading debian-ispell...
+Loading /var/cache/dictionaries-common/emacsen-ispell-default.el (source)...done
+Loading debian-ispell...done
+Loading /var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...done
+Loading /etc/emacs/site-start.d/50dictionaries-common.el (source)...done
+Loading cua-base...done
+For information about GNU Emacs and the GNU system, type C-h C-a.
+next-line: End of buffer [8 times]
+Auto-saving...done
+Saving file /home/juanin/Escritorio/event-management-app/templates/users/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/users/index.html
+Saving file /home/juanin/Escritorio/event-management-app/templates/users/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/users/index.html
+Saving file /home/juanin/Escritorio/event-management-app/templates/users/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/users/index.html
+Auto-saving...done
+Auto-saving...done
+Saving file /home/juanin/Escritorio/event-management-app/templates/users/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/users/index.html
+Auto-saving...done
+forward-sexp: Scan error: "Unbalanced parentheses", 1883, 1979
+Mark set [3 times]
+Unclosed tag <source>
+Saving file /home/juanin/Escritorio/event-management-app/templates/users/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/users/index.html
+Undo!
+Saving file /home/juanin/Escritorio/event-management-app/templates/users/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/users/index.html
+next-line: End of buffer [4 times]
+previous-line: Beginning of buffer [9 times]
+next-line: End of buffer [9 times]
+previous-line: Beginning of buffer
+next-line: End of buffer [10 times]
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Mark set
+<M-up> is undefined
+Auto-saving...done
+Auto-saving...done
+Auto-saving...done
+Auto-saving...done
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+<mouse-6> is undefined
+Auto-saving...done
+next-line: End of buffer
+previous-line: Beginning of buffer [17 times]
+<mouse-6> is undefined [7 times]
+mwheel-scroll: Beginning of buffer [6 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [4 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [5 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer
+<mouse-6> is undefined [4 times]
+<double-mouse-6> is undefined
+<mouse-6> is undefined [2 times]
+<double-mouse-6> is undefined
+<mouse-6> is undefined [3 times]
+<double-mouse-6> is undefined
+<mouse-6> is undefined
+mwheel-scroll: End of buffer
+<mouse-6> is undefined
+mwheel-scroll: End of buffer
+<mouse-7> is undefined [4 times]
+mwheel-scroll: Beginning of buffer [2 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [2 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [3 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [3 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [4 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [4 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [4 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [2 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [2 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [2 times]
+<mouse-7> is undefined
+mwheel-scroll: Beginning of buffer [5 times]
+Auto-saving...done
+<M-up> is undefined
+Auto-saving...
+Can’t guess python-indent-offset, using defaults: 4
+Quit
+(No changes need to be saved) [2 times]
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+(No changes need to be saved)
+next-buffer: Cannot switch buffers in minibuffer window [3 times]
