@@ -1,0 +1,72 @@
+Loading 00debian-vars...done
+Loading /etc/emacs/site-start.d/50dictionaries-common.el (source)...
+Loading debian-ispell...
+Loading /var/cache/dictionaries-common/emacsen-ispell-default.el (source)...done
+Loading debian-ispell...done
+Loading /var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...done
+Loading /etc/emacs/site-start.d/50dictionaries-common.el (source)...done
+Loading cua-base...done
+For information about GNU Emacs and the GNU system, type C-h C-a.
+mwheel-scroll: End of buffer [2 times]
+mwheel-scroll: Beginning of buffer
+Mark set
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/admin.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/admin.py
+mwheel-scroll: Beginning of buffer [4 times]
+mwheel-scroll: End of buffer
+mwheel-scroll: Beginning of buffer [8 times]
+(No changes need to be saved)
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/admin.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/admin.py
+mwheel-scroll: Beginning of buffer [2 times]
+(No changes need to be saved)
+mwheel-scroll: Beginning of buffer
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/forms.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/forms.py
+Mark set
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/forms.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/forms.py
+mwheel-scroll: Beginning of buffer [7 times]
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/models.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/models.py
+(No changes need to be saved)
+mwheel-scroll: End of buffer [2 times]
+mwheel-scroll: Beginning of buffer [8 times]
+Mark set [7 times]
+Auto-saving...done
+Mark set [3 times]
+Auto-saving...done
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Undo! [9 times]
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+(No changes need to be saved)
+Auto-saving...done
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+(No changes need to be saved)
+mwheel-scroll: Beginning of buffer [4 times]
+mwheel-scroll: End of buffer [2 times]
+mwheel-scroll: Beginning of buffer [4 times]
+mwheel-scroll: End of buffer
+Mark set [2 times]
+Saving file /home/juanin/Escritorio/event-management-app/templates/Home/index.html...
+Wrote /home/juanin/Escritorio/event-management-app/templates/Home/index.html
+mwheel-scroll: Beginning of buffer [11 times]
+Quit
+(No changes need to be saved) [3 times]
+next-buffer: Cannot switch buffers in minibuffer window
+completing-read-default: Command attempted to use minibuffer while in minibuffer
+next-buffer: Cannot switch buffers in minibuffer window [2 times]
+Wrote /home/juanin/Escritorio/event-management-app/*Messages*
+(No changes need to be saved) [3 times]
+Saving file /home/juanin/Escritorio/event-management-app/users_operations/views.py...
+Wrote /home/juanin/Escritorio/event-management-app/users_operations/views.py
+(No changes need to be saved) [4 times]
+Saving file /home/juanin/Escritorio/event-management-app/*Messages*...
+Wrote /home/juanin/Escritorio/event-management-app/*Messages*
+Quit
+Saving clipboard to X clipboard manager...

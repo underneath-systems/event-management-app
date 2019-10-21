@@ -1,0 +1,6 @@
+class AttendeeMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if Attendees.objects.filter(email=request.user.email):
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied

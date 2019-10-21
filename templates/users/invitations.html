@@ -115,15 +115,14 @@
                                                 <!--th>Lista de Invitados</th-->
                                                 <!-- <th>Staff</th> -->
                                                 <!-- <td>Etiquetas</td> -->
-                                                <td>Acciones</td>
+                                                <!--td>Acciones</td-->
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for assist in object_list.all %}
+                                          {% for invitacion in invitaciones %}
                                             <tr>
-					      {% if assist.invitation %}
-					      {% for event in assist.event.all %}
-					      <td>{{ assist.id }}</td>
+					      {% for event in invitacion.event.all %}
+					      <td>{{ invitacion.id }}</td>
                                               <td>{{ event.name }}</td>
                                               <td>{{ event.description }}</td>
                                               <td>{{ event.organizer.email }}</td>
@@ -131,10 +130,9 @@
                                               <td>{{ event.end_date_time }}</td>
                                               <td>{{ event.address }}</td>
 					      <td>
-                                                <a class="button is-small is-primary is-fullwidth" href="{% url 'users_operations:invitations'%}">Solicitar invitacion</a>
+                                                <!--a class="button is-small is-primary is-fullwidth" href="{% url 'users_operations:invitations'%}">Solicitar invitacion</a-->
                                               </td>
 					      {% endfor %}
-					      {% endif %}
                                             </tr>
                                             {% empty %}
                                             <tr><td colspan="4">No hay eventos registrados</td></tr>
