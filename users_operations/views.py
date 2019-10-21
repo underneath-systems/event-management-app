@@ -81,8 +81,7 @@ def register_attendee(request):
                 form = attendeesForm()
         return render(request, 'users/attendees_form.html', {'form':form})
 
-
-@organizer_required
+@admin_required
 def register_organizer(request):
         if request.method == 'POST':
                 form = organizerForm(request.POST)
