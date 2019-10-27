@@ -40,5 +40,9 @@ class Index(View):
                 user_type = "Staff"
                 context = {'user_type': user_type}
                 return render(request, self.template, context)
+            if request.user.is_admin:
+                user_type = "Admin"
+                context = {'user_type': user_type}
+                return render(request, self.template, context)
         return render(request, self.template, self.context)
 
