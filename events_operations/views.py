@@ -16,7 +16,9 @@ from django import forms
 from events_operations.forms import eventForm, sendInviteForm
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from users_operations.mixins import *
 
+@organizer_required
 def event_create(request):
         if request.method == 'POST':
                 form = eventForm(request.POST)
@@ -89,7 +91,7 @@ def event_create(request):
         return render(request, 'event/event_form.html', {'form':form})
 
 
-
+@organizer_required
 def event_update(request, event_id):
         event = Event.objects.get(pk=event_id)
         if request.method == 'GET':
@@ -162,6 +164,7 @@ def event_update(request, event_id):
         return render(request, 'event/event_form.html', {'form':form})
 
 
+@organizer_required
 def event_delete(request, event_id):
         event = Event.objects.get(pk=event_id)
         if request.method == 'POST':
@@ -188,7 +191,7 @@ def event_delete(request, event_id):
         return render(request, 'event/event_delete.html', {'event':event})
 
 
-
+@organizer_required
 def send_invite(request, event_id):
         results = Event.objects.filter(pk=event_id)
         for e in results:
@@ -225,13 +228,13 @@ def send_invite(request, event_id):
 
 
 
-class eventsList(ListView):
+class eventsList(OrganizerMixin, ListView):
     model = Event
     template_name = 'event/details.html'
     # paginate_by = 2
     ordering = ['id']
 
-class displaySingleEvent(View):
+class displaySingleEvent(OrganizerMixin, View):
     """
         Displays just one event
     """
@@ -249,7 +252,7 @@ class displaySingleEvent(View):
 
 
 
-class mainEvents(View):
+class mainEvents(OrganizerMixin, View):
     template = 'event/index.html'
     context = {'title': 'Events page'}
 
@@ -262,7 +265,7 @@ class mainEvents(View):
 
 
 
-class Create(CreateView):
+class Create(OrganizerMixin, CreateView):
     model = Event
     form_class = eventForm
     template_name = 'event/event_form.html'
@@ -279,7 +282,7 @@ class EventDetails(DetailView):
     model = Event
 
 
-class UpdateEvent(UpdateView): 
+class UpdateEvent(OrganizerMixin, UpdateView): 
     model = Event
     form_class = eventForm
     template_name = 'event/event_form.html'
@@ -289,7 +292,7 @@ class UpdateEvent(UpdateView):
     #     return reverse('details')
 
 
-class CancelEvent(DeleteView):
+class CancelEvent(OrganizerMixin, DeleteView):
 	model = Event
 	template_name = 'event/event_delete.html'
 	success_url = reverse_lazy('details')
@@ -307,7 +310,7 @@ class CancelEvent(DeleteView):
 
 
 
-class TagEvent(SuccessMessageMixin, DeleteView): 
+class TagEvent(OrganizerMixin, SuccessMessageMixin, DeleteView): 
     model = Event
     form = Event
     fields = "__all__"     
@@ -322,7 +325,7 @@ class TagEvent(SuccessMessageMixin, DeleteView):
 
 
 
-class CancelInvitation(SuccessMessageMixin, DeleteView): 
+class CancelInvitation(OrganizerMixin, SuccessMessageMixin, DeleteView): 
     model = Event
     form = Event
     fields = "__all__"     

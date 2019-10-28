@@ -82,6 +82,12 @@
               <a class="navbar-item" href="/events">Ir a Eventos</a>
 
 	      {% endif %}
+
+	      {% if user_type == "Admin" %}
+              
+              <a class="navbar-item" href="/users/register_organizer">Registrar Organizador</a>
+
+	      {% endif %}
               
               <a class="navbar-item">Usuario: {{ user.get_full_name }} </a>   
               
