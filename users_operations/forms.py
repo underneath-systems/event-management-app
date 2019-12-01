@@ -3,6 +3,8 @@ from .admin import UserCreationForm
 from users_operations.models import *
 
 class attendeesForm(UserCreationForm):
+
+
         class Meta:
                 model = Attendees
 
@@ -13,14 +15,14 @@ class attendeesForm(UserCreationForm):
                         'first_name',
                         'last_name',
 			'photo_id',
-                        'qr_code',
+                        'entity',
                         ]
                 labels = {
                         
                         'first_name': 'Nombre',
                         'last_name': 'Apellidos',
 			'photo_id': 'Fotografia',
-                        'qr_code':'Codigo QR'
+                        'entity':'Entidad academica'
                 }
                 widgets = {
 			'first_name': forms.TextInput(attrs={'class':'form-control'}),
@@ -29,75 +31,77 @@ class attendeesForm(UserCreationForm):
 			'password1': forms.PasswordInput(attrs={'class':'form-control'}),
                         'password2': forms.PasswordInput(attrs={'class':'form-control'}),
 			'photo_id': forms.FileInput(attrs={'class':'form-control'}),
-			'qr_code': forms.TextInput(attrs={'class':'form-control'}),
+			'entity': forms.Select(attrs={'class':'form-control'}),
                 }
 
 
-class organizerForm(UserCreationForm):
+class organizerForm(forms.ModelForm):
         class Meta:
-                model = Organizer
+                model = Organizer 
 
                 fields = [
                         'email',
-                        'password1',
-                        'password2',
                         'first_name',
                         'last_name',
-			'photo_id',
-                        'phone',
 		]
                 labels = {
                         'email': 'Correo electronico',
-                        'password1': 'Contrasena',
-                        'password2': 'Confirmar contrasena',
-                        'firs_name': 'Nombre',
+                        'first_name': 'Nombre',
                         'last_name': 'Apellidos',
-                        'photo_id': 'Fotografia',
-                        'phone':'Telefono'
                 }
                 widgets = {
                         'first_name': forms.TextInput(attrs={'class':'form-control'}),
                         'last_name': forms.TextInput(attrs={'class':'form-control'}),
                         'email': forms.EmailInput(attrs={'class':'form-control'}),
-                        'password1': forms.PasswordInput(attrs={'class':'form-control'}),
-                        'password2': forms.PasswordInput(attrs={'class':'form-control'}),
-                        'photo_id': forms.FileInput(attrs={'class':'form-control'}),
-                        'phone': forms.NumberInput(attrs={'class':'form-control'}),
                 }
+                
+        def clean_email(self):
+                email = self.cleaned_data.get('email')
+                qs = User.objects.filter(email=email)
+                if qs.exists():
+                        raise forms.ValidationError("Correo ya registrado")
+                return email
+
+        def save(self, commit=True):
+        # Save the provided password in hashed format
+                user = super(organizerForm, self).save(commit=False)
+                if commit:
+                        user.save()
+                return user
 
 
-
-class staffForm(UserCreationForm):
+class staffForm(forms.ModelForm):
         class Meta:
                 model = Staff_event
 
                 fields = [
                         'email',
-                        'password1',
-                        'password2',
                         'first_name',
                         'last_name',
-			'photo_id',
-                        'working_hours',
-                ]
+		]
                 labels = {
                         'email': 'Correo electronico',
-                        'password1': 'Contrasena',
-                        'password2': 'Confirmar contrasena',
-                        'firs_name': 'Nombre',
+                        'first_name': 'Nombre',
                         'last_name': 'Apellidos',
-                        'photo_id': 'Fotografia',
-                        'working_hours': 'Horas disponibles',
                 }
                 widgets = {
-			'first_name': forms.TextInput(attrs={'class':'form-control'}),
+                        'first_name': forms.TextInput(attrs={'class':'form-control'}),
                         'last_name': forms.TextInput(attrs={'class':'form-control'}),
-			'email': forms.EmailInput(attrs={'class':'form-control'}),
-			'password1': forms.PasswordInput(attrs={'class':'form-control'}),
-                        'password2': forms.PasswordInput(attrs={'class':'form-control'}),
-			'photo_id': forms.FileInput(attrs={'class':'form-control'}),
-			'working_hours': forms.NumberInput(attrs={'class':'form-control'}),
+                        'email': forms.EmailInput(attrs={'class':'form-control'}),
                 }
+                
+        def clean_email(self):
+                email = self.cleaned_data.get('email')
+                qs = User.objects.filter(email=email)
+                if qs.exists():
+                        raise forms.ValidationError("Correo ya registrado")
+                return email
 
+        def save(self, commit=True):
+        # Save the provided password in hashed format
+                user = super(staffForm, self).save(commit=False)
+                if commit:
+                        user.save()
+                return user
                 
 

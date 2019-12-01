@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <title>Assistants List</title>
+    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.7.5-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.5/css/bulma.min.css" />
+
+    <link rel="stylesheet" href="../../static/css/estilos.css">
+    <style type="text/css">
+            .hero.has-background {
+                position: relative;
+                overflow: hidden;
+            }
+            .hero-background {
+                position: absolute;
+                object-fit: cover;
+                object-position: center center;
+                width: 100%;
+                height: 100%;
+            }
+            .hero-background.is-transparent {
+                opacity: 0.3;
+        }
+     table-background-color:red;
+    </style>
+
+</head>
+
+<body>
+    <section class="hero is-black is-fullheight has-background">
+        <img alt="Fill Murray" class="hero-background is-transparent" src="../../../static/img/concert3.jpeg" />
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/Home">
+                            <img src="../../../static/img/UnderneathLogo.png" alt="Logo">
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" href="/events/details">
+                                    <span class="icon">
+                                        <i class="fa fa-camera-retro fa-lg"></i>
+                                    </span>
+                                    <span>Regresar a eventos</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" href="#">
+                                    <span class="icon">
+                                        <i class="fa-info"></i>
+                                    </span>
+                                    <span>Ayuda</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            </div>
+
+            <!-- 
+            <div class="container">
+                    <h1 class="title">
+                        Underneath Systems Event Details
+                    </h1>
+                    <h2 class="subtitle">
+                        Lista de asistentes al evento.
+                    </h2>
+            <div>
+            -->
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="column is-6 is-offset-3">
+                        <h1 class="title">
+                            Lista de invitados al evento
+                        </h1>
+                        <section class="section">
+                            <div class="columns is-centered">
+                                <div class="column is-narrow">
+                                <div class="box">
+                                                                <!--is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth -->
+                                    <table bgcolor="#00FF00" class="table"  is-bordered is-striped is-narrow is-hoverable >
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Email</th>
+                                                <td>Acciones</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for invitado in invitados %}
+                                            <tr>
+					                            {% for usuario in invitado.user.all %}
+                                                    <td>{{ usuario.get_full_name }}</td>
+                                                    <td>{{ usuario.email }}</td>
+                                                    <td>
+                                                    <a class="button is-small is-warning is-fullwidth" href="{% url 'events_operations:cancel_invitation' invitado.id%}">Anular invitacion</a>
+                                                    </td>
+					                            {% endfor %}					     
+                                            </tr>
+                                            {% empty %}
+                                            <tr><td colspan="4">No hay ningun invitado al evento</td></tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-foot">
+                <div class="container">
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li class="footer-text"><a href="https://github.com/underneath-systems/" style="color:white;">Made with  <i class="fa fa-heart fa-fw" style="font-size: 10px; color:red;"></i>  by Underneath-systems</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+
+        <div class="overlay" id="overlay">
+			<div class="popup" id="popup">
+				<a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+				<h3>LOL</h3>
+				<h4>LOL.</h4>
+				<form action="">
+					<div class="contenedor-inputs">
+						<input type="text" placeholder="Nombre">
+						<input type="email" placeholder="Correo">
+					</div>
+					<input type="submit" class="btn-submit" value="Suscribirse">
+				</form>
+			</div>
+        </div>
+        
+    <script async type="text/javascript" src="../../../static/js/bulma.js"></script>
+    <script src="../../../static/js/popup.js"></script>
+</body>
+
+</html>

@@ -93,21 +93,21 @@ class eventForm(forms.ModelForm):
                         'capacity': forms.NumberInput(attrs={'min':0,'max': '100'}),
                 }
 
-                def __init__(self, *args, **kwargs):
-                        super(EventForm, self).__init__(*args, **kwargs)
-                        self.fields['organizer'].disabled = True
-                        self.fields['organizer'].initial = 'passwd@ciencias.unam.mx'
+        def __init__(self, *args, **kwargs):
+                super(eventForm, self).__init__(*args, **kwargs)
+                self.fields['organizer'].disabled = False
+                #self.fields['organizer'].initial = 'juanc.23.g@enallt.unam.mx'
 
 
-                def clean(self):
-                        cleaned_data = self.cleaned_data
-                        print(cleaned_data)
-                        capacity = Event.capacity
-                        attendees_num = Event.attendees_list.count
-                        if self.capacity == self.capacity:
-                                msg = "Must put 'help' in subject when cc'ing yourself."
-                                self.add_error('capacity', msg)
-                                raise ValidationError('Capacidad maxima del evento excedida!')
+        """def clean(self):
+                cleaned_data = self.cleaned_data
+                print(cleaned_data)
+                capacity = Event.capacity
+                attendees_num = Event.attendees_list.count
+                if self.capacity == self.capacity:
+                        msg = "Must put 'help' in subject when cc'ing yourself."
+                        self.add_error('capacity', msg)
+                        raise ValidationError('Capacidad maxima del evento excedida!')"""
 
 
 
@@ -140,3 +140,17 @@ class tagForm(forms.ModelForm):
                 widgets = {
                         'name': forms.TextInput(attrs={'class':'form-control'}),
                 }
+
+class assignStaffForm(forms.ModelForm):
+        class Meta:
+                model = Event
+                fields = [
+                        'staff_list',
+                ]
+                labels = {
+                        'staff_list':'Lista_staff',
+                }
+                widgets = {
+                        'staff_list': forms.SelectMultiple(attrs={'class':'form-control'}),
+                }
+
