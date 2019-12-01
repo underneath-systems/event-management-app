@@ -16,7 +16,7 @@ urlpatterns = [
     path('invitations/', login_required(views.invitationsList.as_view(template_name = "users/invitations.html")), name='invitations'),
     path('assistance/', login_required(views.assistanceList.as_view(template_name = "users/assistance.html")), name='assistance'),
     path('register/', views.register),
-    path('events/', login_required(views.eventsList.as_view(template_name = "users/events.html")), name='events'),
+    path('events/', views.eventsList.as_view(template_name = "users/events.html"), name='events'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
     path('activate2/<uidb64>/<token>/', activate2, name='activate2'),
     path('invite/<int:event_id>/', login_required(send_invite), name='send_invite'),

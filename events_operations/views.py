@@ -13,7 +13,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib import messages 
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
-from events_operations.forms import eventForm, sendInviteForm, assignStaffForm
+from events_operations.forms import eventForm, sendInviteForm, assignStaffForm, tagForm
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from users_operations.mixins import *
@@ -24,72 +24,10 @@ def event_create(request):
                 form = eventForm(request.POST)
                 if form.is_valid():
                         form.save()
-                        name = request.POST.get('name')
-                        description = request.POST.get('description')
-                        organizer = request.POST.get('organizer')
-                        start = request.POST.get('start_date_time')
-                        end = request.POST.get('end_date_time')
-                        address = request.POST.get('address')
-                        attendees = request.POST.getlist('attendees_list')
-                        staff = request.POST.get('staff_list')
-                        tag = request.POST.get('tag')
-                        capacity = request.POST.get('capacity')
-
-                        organizer_body = render_to_string(
-                        'event/email_event_creation_organizer.html', {
-                                'Nombre': name,
-                                'Descripcion': description,
-                                'Organizador': organizer,
-                                'FechaInicio': start,
-                                'FechaFin': end,
-                                'Direccion': address,
-                                'InvitadosIniciales': attendees,
-                                'Staff': staff,
-                                'Etiquetas': tag,
-                                'Capacidadmaxima': capacity
-                                },
-                        )
-
-
-                        attendees_body = render_to_string(
-                        'event/email_event_creation_attendees.html', {
-                                'Nombre': name,
-                                'Descripcion': description,
-                                'Organizador': organizer,
-                                'FechaInicio': start,
-                                'FechaFin': end,
-                                'Direccion': address,
-                                'InvitadosIniciales': attendees,
-                                'Staff': staff,
-                                'Etiquetas': tag,
-                                'Capacidadmaxima': capacity
-                                },
-                        )
-
-                        organizer_email_message = EmailMessage(
-                                subject= 'Nuevo evento creado!: ' + name + ' | Underneath Systems',
-                                body=organizer_body,
-                                from_email='sorgv.47@gmail.com',
-                                to=['sorgv.47@gmail.com'],
-                        )
-
-                        attendees_email_message = EmailMessage(
-                                subject= 'Te han invitado a un evento!: '+name+ ' | Underneath Systems',
-                                body=organizer_body,
-                                from_email='sorgv.47@gmail.com',
-                                to=['sorgv.47@gmail.com'],
-                        )
-
-                        organizer_email_message.content_subtype = 'html'
-                        attendees_email_message.content_subtype = 'html'
-                        organizer_email_message.send()
-                        attendees_email_message.send()
-                        print("------Enviando notificaciones por email------")
                 return redirect('events_operations:details')
         else:
                 form = eventForm()
-                user = request.user
-        return render(request, 'event/event_form.html', {'form':form}, {'user':user})
+        return render(request, 'event/event_form.html', {'form':form})
 
 
 @organizer_required
@@ -171,13 +109,11 @@ def event_delete(request, event_id):
         event = Event.objects.get(pk=event_id)
         if request.method == 'POST':
                 name_event = event.name
-                print(event.id)
                 attendees = Assist.objects.filter(
                         event__id = event.id,
                         confirm = False)
                 for attendee in attendees:
                         for us in attendee.user.all():
-                                print(us.email)
                                 body = render_to_string(
                                 'event/email_event_deleted.html', {
                                         'Evento': name_event,
@@ -195,8 +131,7 @@ def event_delete(request, event_id):
                                 message.send()
                                 attendee.delete()
                 event.delete()
-                print("----- Evento ", name_event, " eliminado-----")
-                return redirect('events_operations:details')
+                return render(request, "event/event_delete_success.html")
         return render(request, 'event/event_delete.html', {'event':event})
 
 
@@ -362,7 +297,8 @@ class guests_List(OrganizerMixin, View):
         if request.user.is_authenticated:
                 invitados = Assist.objects.filter(
                         event__id = event_id,
-                        invitation = True)
+                        invitation = True,
+                        confirm = False)
                 return render(request, self.template_name, {'invitados': invitados})
         return render(request, self.template, self.context)
 
@@ -389,7 +325,7 @@ class cancel_invitation(OrganizerMixin, View):
                 )
                 message.content_subtype = 'html'
                 message.send()
-                return HttpResponse("Se ha anulado la invitacion al evento")
+                return render(request, "event/cancel_invitation_success.html")
 
 
 @organizer_required
@@ -403,3 +339,14 @@ def assign_staff(request, event_id):
                         form.save()                     
                 return redirect('events_operations:details')
         return render(request, 'event/assign_staff.html', {'form':form})
+
+@organizer_required
+def add_tag(request):
+        if request.method == 'POST':
+                form = tagForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                return redirect('events_operations:create')
+        else:
+                form = tagForm
+        return render(request, "event/add_tag.html", {'form': form})

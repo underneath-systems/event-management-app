@@ -68,13 +68,11 @@
 	    <a class="navbar-item">
 	      
               
-              {% if user.is_authenticated %}
+          {% if user.is_authenticated %}
 
 	      {% if user_type == "Attendee"  %}
 
-	      <a class="navbar-item" href="/users">Mis eventos</a>  
-
-	      <a class="navbar-item" href="/users/events">Todos los eventos</a>  
+	      <a class="navbar-item" href="/users">Mis eventos</a>   
 	      
 	      {% endif %}
 
@@ -99,7 +97,8 @@
 	      <a class="navbar-item" href="{% url 'logout'%}?next={{request.path}}">Cerrar Sesion</a>   
               {% else %}
               
-	      <a class="navbar-item" href="{% url 'login'%}">Iniciar Sesion</a>
+		  <a class="navbar-item" href="{% url 'login'%}">Iniciar Sesion</a>
+		  <a class="navbar-item" href="/users/events">Todos los eventos</a> 
 	       <a class="navbar-item" href= ..\users\register>Registrarse</a>
               {% endif %}
               

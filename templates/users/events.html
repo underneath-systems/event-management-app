@@ -105,10 +105,8 @@
                                     <table bgcolor="#00FF00" class="table"  is-bordered is-striped is-narrow is-hoverable >
                                         <thead>
                                             <tr >
-                                                <th>ID Evento</th>
                                                 <th>Nombre</th>
                                                 <th>Descripcion</th>
-                                                <th>Organizador</th>
                                                 <th>Fecha/Hora de Inicio</th>
                                                 <th>Fecha/Hora de Fin</th>
                                                 <th>Direccion</th>
@@ -123,12 +121,9 @@
                                       
                                             {% for event in object_list.all %}
                                               
-                                            <tr>
-                                            
-                                                <td>{{ event.id }}</td>
+                                            <tr>                                            
                                                 <td>{{ event.name }}</td>
                                                 <td>{{ event.description }}</td>
-                                                <td>{{ event.organizer.email }}</td>
                                                 <td>{{ event.start_date_time }}</td>
                                                 <td>{{ event.end_date_time }}</td>
                                                 <td>{{ event.address }}</td>
