@@ -1,19 +1,9 @@
-<h1 style="font-size: 1.5em; line-height: 2em;"> Nuevo evento creado! </h1>
+{% autoescape off %}  
+<h1>Hola {{ Nombre }}</h1>
 
-<p>Hola {{ email }} ! Haz sido registrado exitosamente como asistente, tus datos son:</p>
+<p>Haz solicitado registrarte en la plataforma Gestión de Eventos UNAM.<br><br>
+Para terminar tu registro por favor da click (o copia en tu navegador), el siguiente link:<br><br>
+{{Activation_link}} 
 
-<dl>
-  <dt>Email:</dt>
-  <dd>{{ email }}</dd>
-
-  <dt>Password:</dt>
-  <dd>{{ password }}</dd>
-
-  <dt>Fotografia:</dt>
-  <dd>{{ photo_id }}</dd>
-
-  <dt>Codigo QR:</dt>
-  <dd>{{ qr_code }}</dd>
-  
-</dl>
-
+</p>
+{% endautoescape %}

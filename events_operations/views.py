@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
-from events_operations.models import Event
+from events_operations.models import Event, Assist
 from users_operations.models import User
 from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -13,7 +13,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib import messages 
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
-from events_operations.forms import eventForm, sendInviteForm
+from events_operations.forms import eventForm, sendInviteForm, assignStaffForm
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from users_operations.mixins import *
@@ -88,7 +88,8 @@ def event_create(request):
                 return redirect('events_operations:details')
         else:
                 form = eventForm()
-        return render(request, 'event/event_form.html', {'form':form})
+                user = request.user
+        return render(request, 'event/event_form.html', {'form':form}, {'user':user})
 
 
 @organizer_required
@@ -103,6 +104,7 @@ def event_update(request, event_id):
                         name = request.POST.get('name')
                         description = request.POST.get('description')
                         organizer = request.POST.get('organizer')
+                        #organizer = request.user
                         start = request.POST.get('start_date_time')
                         end = request.POST.get('end_date_time')
                         address = request.POST.get('address')
@@ -168,25 +170,32 @@ def event_update(request, event_id):
 def event_delete(request, event_id):
         event = Event.objects.get(pk=event_id)
         if request.method == 'POST':
-                name = event.name
-                attendees = request.POST.getlist('attendees_list')
-                deleted_event_body = render_to_string(
-                'event/email_event_deleted.html', {
-                        'Nombre': name,
-                        },
-                )
+                name_event = event.name
+                print(event.id)
+                attendees = Assist.objects.filter(
+                        event__id = event.id,
+                        confirm = False)
+                for attendee in attendees:
+                        for us in attendee.user.all():
+                                print(us.email)
+                                body = render_to_string(
+                                'event/email_event_deleted.html', {
+                                        'Evento': name_event,
+                                        'Usuario': us.get_full_name(),
+                                        },
+                                )
 
-                deleted_email_message = EmailMessage(
-                        subject= 'El evento: '+str(name)+ ' fue cancelado. | Underneath Systems',
-                        body=deleted_event_body,
-                        from_email='sorgv.47@gmail.com',
-                        to=['sorgv.47@gmail.com'],
-                )
+                                message = EmailMessage(
+                                        subject= 'El evento: '+str(name_event)+ ' fue cancelado. | Underneath Systems',
+                                        body=body,
+                                        to=[us.email],
+                                )
 
-                deleted_email_message.content_subtype = 'html'
+                                message.content_subtype = 'html'
+                                message.send()
+                                attendee.delete()
                 event.delete()
-                deleted_email_message.send()
-                print("----- Evento ", name, " eliminado-----")
+                print("----- Evento ", name_event, " eliminado-----")
                 return redirect('events_operations:details')
         return render(request, 'event/event_delete.html', {'event':event})
 
@@ -225,6 +234,7 @@ def send_invite(request, event_id):
                         invite_email_message.send()
                         return redirect('events_operations:details')
         return render(request, 'event/send_invite.html', {'form':form})
+        
 
 
 
@@ -234,7 +244,7 @@ class eventsList(OrganizerMixin, ListView):
     # paginate_by = 2
     ordering = ['id']
 
-class displaySingleEvent(OrganizerMixin, View):
+class displaySingleEvent(AttendeeAndOrganizerMixin, View):
     """
         Displays just one event
     """
@@ -297,16 +307,6 @@ class CancelEvent(OrganizerMixin, DeleteView):
 	template_name = 'event/event_delete.html'
 	success_url = reverse_lazy('details')
 
-# class CancelEvent(SuccessMessageMixin, DeleteView): 
-#     model = Event
-#     form = Event
-#     fields = "__all__"     
-
-#     # Redireccionamos a la página principal luego de eliminar un registro o postre
-#     def get_success_url(self): 
-#         success_message = 'Evento Eliminado Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
-#         messages.success (self.request, (success_message))       
-#         return reverse('leer') # Redireccionamos a la vista principal 'leer'
 
 
 
@@ -323,8 +323,6 @@ class TagEvent(OrganizerMixin, SuccessMessageMixin, DeleteView):
 
 
 
-
-
 class CancelInvitation(OrganizerMixin, SuccessMessageMixin, DeleteView): 
     model = Event
     form = Event
@@ -335,3 +333,73 @@ class CancelInvitation(OrganizerMixin, SuccessMessageMixin, DeleteView):
         success_message = 'Invitacion cancelada Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
         messages.success (self.request, (success_message))       
         return reverse('events') # Redireccionamos a la vista principal 'leer'
+
+
+class assist_List(OrganizerAndStaffMixin, View):
+    model = Assist
+    template_name = 'event/assistance.html'
+    def get(self, request, event_id):
+        context = {}
+        if request.user.is_authenticated:
+                asistentes = Assist.objects.filter(
+                        event__id = event_id,
+                        confirm = True)
+                if Organizer.objects.filter(email=request.user.email):
+                        user_type = "Organizer"
+                        context = {'user_type': user_type, 'asistentes': asistentes}
+                else:
+                        user_type = "Staff"
+                        context = {'user_type': user_type, 'asistentes': asistentes}
+                return render(request, self.template_name, context)
+                #return render(request, self.template_name, {'asistentes': asistentes})
+        return render(request, self.template, self.context)
+
+
+class guests_List(OrganizerMixin, View):
+    model = Assist
+    template_name = 'event/guests.html'
+    def get(self, request, event_id):
+        if request.user.is_authenticated:
+                invitados = Assist.objects.filter(
+                        event__id = event_id,
+                        invitation = True)
+                return render(request, self.template_name, {'invitados': invitados})
+        return render(request, self.template, self.context)
+
+
+
+class cancel_invitation(OrganizerMixin, View):
+        def get(self, request, invitation_id):
+                invitated = Assist.objects.get(pk=invitation_id)
+                event = invitated.event.first()
+                user = invitated.user.first()
+                event.capacity += 1
+                event.save()
+                invitated.delete()
+                body = render_to_string(
+                        'event/email_cancel_invitation.html', {
+                                'Evento': event.name,
+                                'Usuario': user.get_full_name(),
+                                },
+                        )
+                message = EmailMessage(
+                        subject= 'Cancelacion de invitacion al evento: '+str(event.name),
+                        body=body,
+                        to=[user.email],
+                )
+                message.content_subtype = 'html'
+                message.send()
+                return HttpResponse("Se ha anulado la invitacion al evento")
+
+
+@organizer_required
+def assign_staff(request, event_id):
+        event = Event.objects.get(pk=event_id)
+        if request.method == 'GET':
+                form = assignStaffForm(instance=event)
+        else:
+                form = assignStaffForm(request.POST, instance=event)
+                if form.is_valid():
+                        form.save()                     
+                return redirect('events_operations:details')
+        return render(request, 'event/assign_staff.html', {'form':form})

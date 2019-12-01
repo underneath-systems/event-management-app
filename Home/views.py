@@ -24,7 +24,8 @@ class Index(View):
         if queryset:
             event = Event.objects.filter(
                 Q(name__icontains=queryset) |
-                Q(description__icontains=queryset)
+                Q(description__icontains=queryset) |
+                Q(tag__name__icontains=queryset)
                 ).distinct()
             return render(request, 'users/results.html', {'event':event})
         elif request.user.is_authenticated:

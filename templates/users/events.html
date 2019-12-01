@@ -92,10 +92,10 @@
                 <div class="container has-text-centered">
                     <div class="column is-6 is-offset-3">
                         <h1 class="title">
-                            Underneath Systems Event Details
+                            Underneath Systems Listado de eventos
                         </h1>
                         <h2 class="subtitle">
-                            Resultados de la busqueda:
+                            Estos son los eventos existentes
                         </h2>
                         <section class="section">
                             <div class="columns is-centered">
@@ -120,8 +120,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for event in event.all %}
+                                      
+                                            {% for event in object_list.all %}
+                                              
                                             <tr>
+                                            
                                                 <td>{{ event.id }}</td>
                                                 <td>{{ event.name }}</td>
                                                 <td>{{ event.description }}</td>
@@ -129,6 +132,7 @@
                                                 <td>{{ event.start_date_time }}</td>
                                                 <td>{{ event.end_date_time }}</td>
                                                 <td>{{ event.address }}</td>
+                             
                                                 <!-- <td> -->
                                                 <!-- {% for attendee in event.attendees_list.all %} -->
                                                 <!-- <li>{{ attendee }}</li> -->
@@ -144,7 +148,6 @@
                                                 <!-- <li>{{ tag }}</li> -->
                                                 <!-- {% endfor %} -->
                                                 <!-- </td> -->
-
                                                 <td>
                                                     {% if event.capacity > 0 %}
                                                                     <span class = "has-text-success">
@@ -152,20 +155,24 @@
                                                                     </span>
                                                     {% else %}
                                                                     <span class = "has-text-danger">
-                                                                    Sin entradas disponibles.
+                                                                    Sin entradas disponibles
                                                                     </span>
-                                                    {% endif %}
                                                     
+                                                    {% endif %}
                                                    <!-- {{ event.capacity }} / {{ event.attendees_list.all.count }} -->
                                                 </td>
                                                 <td>
                                                     <a class="button is-small is-info is-fullwidth"  href="{% url 'events_operations:single_event' event.id %}"  >Detalles</a>
                                                     <a class="button is-small is-primary is-fullwidth" href="{% url 'users_operations:send_invite' event.id %}">Solicitar invitacion</a>
+                                                    
                                                 </td>
                                             </tr>
+                                              
                                             {% empty %}
+                                                                                         
                                             <tr><td colspan="4">No hay eventos registrados</td></tr>
                                             {% endfor %}
+                                      
                                         </tbody>
                                     </table>
                                   </div>

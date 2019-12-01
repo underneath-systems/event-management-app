@@ -82,12 +82,33 @@ class User(AbstractBaseUser):
         return self.is_admin
 
 
+
+entidades=[
+        ('FA', 'Facultad de Arquitectura'),
+        ('FAD', 'Facultad de Artes y Diseno'),
+        ('FC', 'Facultad de Ciencias'),
+        ('FCPS', 'Facultad de Ciencias Politicas y Sociales'),
+        ('FCA', 'Facultad de Contaduria y Administracion'),
+        ('FD', 'Facultad de Derecho'),
+        ('FE', 'Facultad de Economia'),
+        ('FESAc', 'Facultad de Estudios Superiores (FES) Acatlan'),
+        ('FESAc', 'Facultad de Estudios Superiores (FES) Acatlan'),
+        ('FESAr', 'Facultad de Estudios Superiores (FES) Aragon'),
+        ('FESC', 'Facultad de Estudios Superiores (FES) Cuautitlan'),
+        ('FESI', 'Facultad de Estudios Superiores (FES) Iztacala'),
+        ('FESZ', 'Facultad de Estudios Superiores (FES) Zaragoza'),
+        ('FLL', 'Facultad de Filosofia y Letras'),
+        ('FI', 'Facultad de Ingenieria'),
+        ('FMe', 'Facultad de Medicina'),
+        ('FMVZ', 'Facultad de Medicina Veterinaria y Zootecnia'),
+        ('FMu', 'Facultad de Musica'),
+        ('FO', 'Facultad de Odontologia'),
+        ('FP', 'Facultad de Psicologia'),
+        ('FQ', 'Facultad de Quimica'),
+]
+
 class Attendees(User):
-    #user = models.OneToOneField(User, on_delete=models.CASCADE)
-    qr_code = models.CharField(default = ' ', max_length=20)
-    #last_login = models.DateTimeField(null=True)
-    #def __str__(self):
-        #return '{} {}'.format(self.first_name, self.email)
+    entity = models.CharField(max_length=10, choices=entidades, default="FC")
 
 class Organizer(User):
     # idOrganizer = models.UUIDField(default=uuid.uuid4, editable=False)

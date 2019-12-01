@@ -29,7 +29,7 @@
     </head>
     <body>
 	<section class="hero is-fullheight has-background">
-	    <img alt="Fill Murray" class="hero-background is-transparent" src="../../static/img/concert3.jpeg">
+	    <img alt="Fill Murray" class="hero-background is-transparent" src="../../../../static/img/concert3.jpeg">
 	    <div class="hero-body">
 		<div class="container has-text-centered">
 		    <div class="column is-4 is-offset-4">
@@ -37,7 +37,7 @@
 			    <p class="subftitle is-4 has-text-grey">Registrarse.</p><br>
 
 			    {% block content %}
-			    <form method="post" enctype="multipart/form-data">
+			    <form method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<button class="button is-success" is-fullwidth"

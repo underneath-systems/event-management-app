@@ -40,39 +40,19 @@
 
 <body>
     <section class="hero is-black is-fullheight has-background">
-        <img alt="Fill Murray" class="hero-background is-transparent" src="../../static/img/concert3.jpeg" />
+        <img alt="Fill Murray" class="hero-background is-transparent" src="../../../static/img/concert3.jpeg" />
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
                         <a class="navbar-item" href="/Home">
-                            <img src="../../static/img/UnderneathLogo.png" alt="Logo">
+                            <img src="../../../static/img/UnderneathLogo.png" alt="Logo">
                         </a>
                         <span class="navbar-burger burger" data-target="navbarMenu">
                             <span></span>
                             <span></span>
                             <span></span>
                         </span>
-                    </div>
-                    <div id="navbarMenu" class="navbar-menu">
-                        <div class="navbar-end">
-                            <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="/users">
-                                    <span class="icon">
-                                        <i class="fa fa-camera-retro fa-lg"></i>
-                                    </span>
-                                    <span>Regresar a tu inicio</span>
-                                </a>
-                            </span>
-                            <span class="navbar-item">
-                                <a class="button is-white is-outlined" href="#">
-                                    <span class="icon">
-                                        <i class="fa-info"></i>
-                                    </span>
-                                    <span>Ayuda</span>
-                                </a>
-                            </span>
-                        </div>
                     </div>
                 </div>
             </nav>
@@ -92,50 +72,17 @@
                 <div class="container has-text-centered">
                     <div class="column is-6 is-offset-3">
                         <h1 class="title">
-                            Underneath Systems Event Details
+                            Underneath Systems Error
                         </h1>
-                        <h2 class="subtitle">
-                            Estos son los eventos a los que has asistido.
-                        </h2>
                         <section class="section">
                             <div class="columns is-centered">
                                 <div class="column is-narrow">
                                 <div class="box">
-                                                                <!--is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth -->
-                                    <table bgcolor="#00FF00" class="table"  is-bordered is-striped is-narrow is-hoverable >
-                                        <thead>
-                                            <tr >
-                                                <th>ID Evento</th>
-                                                <th>Nombre</th>
-                                                <th>Descripcion</th>
-                                                <th>Organizador</th>
-                                                <th>Fecha/Hora de Inicio</th>
-                                                <th>Fecha/Hora de Fin</th>
-                                                <th>Direccion</th>
-                                                <!--th>Lista de Invitados</th-->
-                                                <!-- <th>Staff</th> -->
-                                                <!-- <td>Etiquetas</td> -->
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for asistencia in asistencias %}
-                                            <tr>
-					      {% for event in asistencia.event.all %}
-					      <td>{{ asistencia.id }}</td>
-                                              <td>{{ event.name }}</td>
-                                              <td>{{ event.description }}</td>
-                                              <td>{{ event.organizer.email }}</td>
-                                              <td>{{ event.start_date_time }}</td>
-                                              <td>{{ event.end_date_time }}</td>
-                                              <td>{{ event.address }}</td>
-					      {% endfor %}					     
-                                            </tr>
-                                            {% empty %}
-                                            <tr><td colspan="4">No hay eventos registrados</td></tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+                     <!--is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth -->
+                                    Error al registrar asistencia
+                                    </b><br><br><br>
+                                    {{Message}} <br><br>
+                                    <a class="button is-medium is-success is-fullwidth" href="{% url 'users_operations:staff_events'%}">Ok</a>
                                   </div>
                                 </div>
                             </div>

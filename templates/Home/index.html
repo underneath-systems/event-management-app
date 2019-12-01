@@ -55,6 +55,7 @@
 	  <a class="navbar-item" href="../">
             <img src="../../static/img/UnderneathLogo.png" alt="Logo"> 
 	  </a>
+	  <a class="navbar-item">Usuario: {{ user.get_full_name }} </a>  
 	  <span class="navbar-burger burger" data-target="navbarMenu">
 	    <span></span>
 	    <span></span>
@@ -63,9 +64,7 @@
 	</div>
 	<div id="navbarMenu" class="navbar-menu">
 	  <div class="navbar-end">
-	    <a class="navbar-item is-active">
-              Home
-            </a>
+	    
 	    <a class="navbar-item">
 	      
               
@@ -74,6 +73,8 @@
 	      {% if user_type == "Attendee"  %}
 
 	      <a class="navbar-item" href="/users">Mis eventos</a>  
+
+	      <a class="navbar-item" href="/users/events">Todos los eventos</a>  
 	      
 	      {% endif %}
 
@@ -87,9 +88,13 @@
               
               <a class="navbar-item" href="/users/register_organizer">Registrar Organizador</a>
 
-	      {% endif %}
+		  {% endif %}
+		  
+		  {% if user_type == "Staff" %}
               
-              <a class="navbar-item">Usuario: {{ user.get_full_name }} </a>   
+              <a class="navbar-item" href="/users/staff_events">Eventos</a>
+
+	      {% endif %}
               
 	      <a class="navbar-item" href="{% url 'logout'%}?next={{request.path}}">Cerrar Sesion</a>   
               {% else %}
@@ -125,7 +130,7 @@
       </div>
 
 
-      {% if user.is_authenticated %}
+      {% if user_type == "Attendee" %}
       <div class="container has-text-centered">
 	<div class="row">
 	  <div class="col-md-12 search">

@@ -95,7 +95,7 @@
                             Underneath Systems Event Details
                         </h1>
                         <h2 class="subtitle">
-                            Estos son los eventos que haz organizado ;).
+                            Estos son los eventos que haz organizado ;).  {{ user.email }}
                         </h2>
                         <section class="section">
                             <div class="columns is-centered">
@@ -120,8 +120,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                      
                                             {% for event in object_list.all %}
+                                              
                                             <tr>
+                                            {% if event.organizer.email ==   user.email  %}
                                                 <td>{{ event.id }}</td>
                                                 <td>{{ event.name }}</td>
                                                 <td>{{ event.description }}</td>
@@ -129,6 +132,7 @@
                                                 <td>{{ event.start_date_time }}</td>
                                                 <td>{{ event.end_date_time }}</td>
                                                 <td>{{ event.address }}</td>
+                             
                                                 <!-- <td> -->
                                                 <!-- {% for attendee in event.attendees_list.all %} -->
                                                 <!-- <li>{{ attendee }}</li> -->
@@ -144,7 +148,6 @@
                                                 <!-- <li>{{ tag }}</li> -->
                                                 <!-- {% endfor %} -->
                                                 <!-- </td> -->
-
                                                 <td>
                                                     {% if event.capacity > event.attendees_list.all.count %}
                                                                     <span class = "has-text-success">
@@ -160,14 +163,19 @@
                                                 </td>
                                                 <td>
                                                     <a class="button is-small is-success is-fullwidth" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
+                                                    <a class="button is-small is-link is-fullwidth" href="{% url 'events_operations:assign_staff' event.id %}">Asignar Staff</a>
                                                     <a class="button is-small is-danger is-fullwidth" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
                                                     <a class="button is-small is-info is-fullwidth"  href="{% url 'events_operations:single_event' event.id %}"  >Detalles</a>
-                                                    <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:send_invite' event.id %}">Solicitar invitacion</a>
+                                                    <a class="button is-small is-warning is-fullwidth" href="{% url 'events_operations:guests_list' event.id %}">Anular invitaciones</a>
+                                                    <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:assist_list' event.id %}">Asistentes</a>
                                                 </td>
                                             </tr>
+                                              {% endif %}   
                                             {% empty %}
+                                                         
                                             <tr><td colspan="4">No hay eventos registrados</td></tr>
                                             {% endfor %}
+                                      
                                         </tbody>
                                     </table>
                                   </div>

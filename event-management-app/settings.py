@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'events_operations.get_username.RequestMiddleware',
 ]
 
 ROOT_URLCONF = 'event-management-app.urls'
@@ -84,8 +85,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
       #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'underneath_systems',
-        'USER': 'underneath',
+        'NAME': 'u',
+        'USER': 'u',
+        #'NAME': 'underneath_systems',
+        #'USER': 'underneath',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
