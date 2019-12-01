@@ -35,62 +35,21 @@
 	<div class="container has-text-centered">
           <div class="column is-4 is-offset-4">
             <div class="box">
-              <p class="subtitle is-4 has-text-grey">Edita los siguientes campos!</p><br>
+              <p class="subtitle is-4 has-text-grey">Selecciona los usuarios que serán Staff del evento!</p><br>
               {% block content %}
               <form method="post">
                 {% csrf_token %}
                 <div class="box">
                   <div class="label">
                     <div class="is-half">
-                      <label>Nombre</label>
-                      {{ form.name }}  
-
-                      <br>
-                      <label >Descripcion</label>
-                      {{ form.description }}
-
-                      <br>                                
-                      <label >Nombre de organizador</label>
-                      {{ form.organizer }}
-
-                      <br>                                
-                      <label >Fecha Inicio</label>
-                      {{ form.start_date_time }}
-
-                      <br>                                
-                      <label >Fecha Fin</label>
-                      {{ form.end_date_time }}
-
-                      <br>                                
-                      <label >Direccion</label>
-                      {{ form.address }}
-
-                      <br>                                
-                      <label >Invitados</label>
-                      {{form.attendees_list}}
-
                       <br>                                
                       <label >Staff</label>
                       {{ form.staff_list }}
-
-                      <br>                                
-                      <label >Etiqueta</label>
-                      {{ form.tag }}
-
-                      <button class="btn btn-primary" type="submit">+ etiqueta</button>
-
-                      <br>                                
-                      <label >Capacidad</label>
-                      {{ form.capacity }}
-                      
                     </div>
                   </div>
 
                 </div>
 
-                
-		
-                
                 <div class="row">
                   <div class="col-md-8 col-md-offset-2">
                     <div class="form-group">
@@ -98,9 +57,11 @@
                     <button class="btn btn-primary" type="submit">Guardar</button>
 	
 	
-                        <a class= "btn btn-default" href="{% url 'events_operations:create' %}">Cancelar</a>
+                        <a class= "btn btn-default" href="{% url 'events_operations:details' %}">Cancelar</a>
                     </div>
                   </div>
+                  <br>
+                  <a class= "btn btn-default" href="{% url 'users_operations:register_staff' %}">Registrar nuevo usuario staff</a>
                 </div>
               </form>
               {% endblock %}

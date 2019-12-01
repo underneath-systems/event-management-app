@@ -21,9 +21,17 @@ class UserCreationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
+        complete_domain = email.split('@')[1]
+        aux = complete_domain.split('.')
+        if(len(aux) == 2):
+            final_domain = complete_domain
+        else:
+            final_domain = aux[1] + '.' + aux[2] 
         qs = User.objects.filter(email=email)
         if qs.exists():
             raise forms.ValidationError("Correo ya registrado")
+        if final_domain != "unam.mx":
+            raise forms.ValidationError("Debes ingresar un correo del dominio unam.mx")
         return email
 
     def clean_password2(self):

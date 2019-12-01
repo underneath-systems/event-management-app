@@ -163,9 +163,11 @@
                                                 </td>
                                                 <td>
                                                     <a class="button is-small is-success is-fullwidth" href="{% url 'events_operations:event_update' event.id %}">Editar</a>
+                                                    <a class="button is-small is-link is-fullwidth" href="{% url 'events_operations:assign_staff' event.id %}">Asignar Staff</a>
                                                     <a class="button is-small is-danger is-fullwidth" href="{% url 'events_operations:event_delete' event.id %}">Eliminar</a>
                                                     <a class="button is-small is-info is-fullwidth"  href="{% url 'events_operations:single_event' event.id %}"  >Detalles</a>
-                                                    <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:send_invite' event.id %}">Solicitar invitacion</a>
+                                                    <a class="button is-small is-warning is-fullwidth" href="{% url 'events_operations:guests_list' event.id %}">Anular invitaciones</a>
+                                                    <a class="button is-small is-primary is-fullwidth" href="{% url 'events_operations:assist_list' event.id %}">Asistentes</a>
                                                 </td>
                                             </tr>
                                               {% endif %}   

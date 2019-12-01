@@ -39,7 +39,8 @@ class Event(models.Model):
 
 
 class Assist(models.Model):
-    qr_code = models.CharField(default = '', null = False, blank = False, max_length=20)
+    qr_code = models.ImageField(null=False, blank=False)
+    #models.CharField(default = '', null = False, blank = False, max_length=20)
     user = models.ManyToManyField(User)
     event = models.ManyToManyField(Event)
     confirm = models.BooleanField(default = False)
