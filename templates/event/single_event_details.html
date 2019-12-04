@@ -45,6 +45,7 @@
 													</div>
 													<div id="navbarMenu" class="navbar-menu">
 														<div class="navbar-end">
+															{% if user_type == "Organizer"  %}
 															<span class="navbar-item">
 																<a class="button is-white is-outlined" href="/events/details">
 																	<span class="icon">
@@ -53,6 +54,16 @@
 																	<span>Regresar a todos los eventos</span>
 																</a>
 															</span>
+															{% else %}
+															<span class="navbar-item">
+																<a class="button is-white is-outlined" href="/users/">
+																	<span class="icon">
+																		<i class="fa fa-camera-retro fa-lg"></i>
+																	</span>
+																	<span>Regresar a tu inicio</span>
+																</a>
+															</span>
+															{% endif %}
 															<span class="navbar-item">
 																<a class="button is-white is-outlined" href="#">
 																	<span class="icon">

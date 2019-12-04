@@ -191,8 +191,12 @@ class displaySingleEvent(AttendeeAndOrganizerMixin, View):
             GET in one event
         """
         event = get_object_or_404(Event, id=event_id)
+        user_type = "Organizer"
+        if Attendees.objects.filter(email=request.user.email):
+                user_type = "Attendee"
         self.context['event'] = event
         self.context['title'] = str(event)
+        self.context['user_type'] = user_type
         return render(request, self.template, self.context)
 
 
