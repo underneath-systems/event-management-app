@@ -2,3 +2,7 @@ underneath-systems-app/__pycache__/
 *.pyc
 Home/__pycache__/urls.cpython-36.pyc
 Home/__pycache__/views.cpython-36.pyc
+*Messages*
+*Messages~*
+#*Messages*#
+Home/__pycache__/__init__.cpython-36.pyc

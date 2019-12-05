@@ -45,40 +45,37 @@
                       <label>Nombre</label>
                       {{ form.name }}  
 
+                      <br>                                                           
+                      <label >Etiquetas:</label>
                       <br>
-                      <label >Descripcion</label>
+                      {{ form.tag }}
+                      
+                      <br>
+                      <a class="button is-small is-info is-mediumwidth" href="/events/add_tag">Nueva etiqueta</a>
+
+                      <br>
+                      <label >Descripcion:</label>
+                      <br>
                       {{ form.description }}
 
                       <br>                                
-                      <label >Nombre de organizador</label>
-                      {{ form.organizer }}
-
-                      <br>                                
-                      <label >Fecha Inicio</label>
+                      <label >Fecha Inicio:</label>
+                      <br>
                       {{ form.start_date_time }}
 
                       <br>                                
-                      <label >Fecha Fin</label>
+                      <label >Fecha Fin:</label>
+                      <br>
                       {{ form.end_date_time }}
 
                       <br>                                
-                      <label >Direccion</label>
+                      <label >Direccion:</label>
+                      <br>
                       {{ form.address }}
 
                       <br>                                
-                      <label >Invitados</label>
-                      {{form.attendees_list}}
-
-                      <br>                                
-                      <label >Staff</label>
-                      {{ form.staff_list }}
-
-                      <br>                                
-                      <label >Etiqueta</label>
-                      {{ form.tag }}
-
-                      <br>                                
-                      <label >Capacidad</label>
+                      <label >Capacidad:</label>
+                      <br>
                       {{ form.capacity }}
                       
                     </div>
@@ -96,7 +93,7 @@
                     <button class="btn btn-primary" type="submit">Guardar</button>
 	
 	
-                        <a class= "btn btn-default" href="{% url 'events_operations:details' %}">Cancelar</a>
+                        <a class= "btn btn-default" href="/events">Cancelar</a>
                     </div>
                   </div>
                 </div>
