@@ -63,8 +63,6 @@ class eventForm(forms.ModelForm):
                         'start_date_time',
                         'end_date_time',
                         'address',
-                        'attendees_list',
-                        'staff_list',
                         'tag',
                         'capacity'
                 ]
@@ -75,8 +73,6 @@ class eventForm(forms.ModelForm):
                         'start_date_time': 'Fecha de Inicio',
                         'end_date_time':'Fecha de fin',
                         'address': 'Direccion',
-                        'attendees_list':'Lista_asistentes',
-                        'staff_list':'Lista_staff',
                         'tag':'Etiquetas',
                         'capacity':'Capacidad_maxima'
                 }
@@ -87,16 +83,15 @@ class eventForm(forms.ModelForm):
                         'start_date_time': forms.SelectDateWidget(years=YEAR_CHOICES, months=AVAILABLE_MONTHS, attrs={'class': 'datepicker'} ),
                         'end_date_time': forms.SelectDateWidget(years=YEAR_CHOICES, months=AVAILABLE_MONTHS),
                         'address': forms.TextInput(attrs={'class':'form-control'}),
-                        'attendees_list': forms.SelectMultiple(attrs={'class':'form-control'}),
-                        'staff_list': forms.SelectMultiple(attrs={'class':'form-control'}),
                         'tag': forms.SelectMultiple(attrs={'class':'form-control'}),
                         'capacity': forms.NumberInput(attrs={'min':0,'max': '100'}),
                 }
 
         def __init__(self, *args, **kwargs):
                 super(eventForm, self).__init__(*args, **kwargs)
-                self.fields['organizer'].disabled = False
-                #self.fields['organizer'].initial = 'juanc.23.g@enallt.unam.mx'
+                self.fields['organizer'].disabled = True
+                self.fields['organizer'].initial = Organizer.objects.get(email="juanc.23.g@gmail.com")
+
 
 
         """def clean(self):

@@ -88,27 +88,23 @@
                     </h2>
             <div>
             -->
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <div class="column is-6 is-offset-3">
+           
+                    <div class="column has-text-centered">
                         <h1 class="title">
-                            Underneath Systems Event Details
+                            Underneath Systems Event Resultados
                         </h1>
                         <h2 class="subtitle">
                             Resultados de la busqueda:
                         </h2>
-                        <section class="section">
-                            <div class="columns is-centered">
-                                <div class="column is-narrow">
-                                <div class="box">
+                        
+                                <div class="column is-centered">
+                                <div class="container">
                                                                 <!--is-overlay is-bordered is-striped is-narrow is-hoverable is-fullwidth -->
                                     <table bgcolor="#00FF00" class="table"  is-bordered is-striped is-narrow is-hoverable >
                                         <thead>
                                             <tr >
-                                                <th>ID Evento</th>
                                                 <th>Nombre</th>
                                                 <th>Descripcion</th>
-                                                <th>Organizador</th>
                                                 <th>Fecha/Hora de Inicio</th>
                                                 <th>Fecha/Hora de Fin</th>
                                                 <th>Direccion</th>
@@ -122,10 +118,8 @@
                                         <tbody>
                                             {% for event in event.all %}
                                             <tr>
-                                                <td>{{ event.id }}</td>
                                                 <td>{{ event.name }}</td>
                                                 <td>{{ event.description }}</td>
-                                                <td>{{ event.organizer.email }}</td>
                                                 <td>{{ event.start_date_time }}</td>
                                                 <td>{{ event.end_date_time }}</td>
                                                 <td>{{ event.address }}</td>

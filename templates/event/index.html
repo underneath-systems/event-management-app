@@ -55,6 +55,33 @@ body {
   Your browser does not support HTML5 video.
 </video>
 
+ <!-- START NAV -->
+ <nav class="navbar is-black">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../">
+        <img src="../../static/img/UnderneathLogo.png" alt="Logo"> 
+      </a>
+      <span class="navbar-burger burger" data-target="navbarMenu">
+  <span></span>
+  <span></span>
+  <span></span>
+      </span>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+  <a class="navbar-item is-active" href='/'>
+          Home
+        </a>
+  <a class="navbar-item">	                                             
+          
+    <a class="navbar-item" href="{% url 'logout'%}?next=/">Cerrar Sesion</a>
+      </div>
+    </div>
+  </div>
+</nav>
+   <!-- END NAV -->
+
 <div class="content">
   <h1>Bienvenido Organizador!</h1>
   <p> En esta seccion puedes adminstrar y organizar tus eventos.
@@ -63,11 +90,6 @@ body {
   <div class="columns">
       <div class="column"> <a class="button is-black" onclick="window.location.href = 'create';" >Crear Evento. </a></div>
       <div class="column"> <a class="button is-black" onclick="window.location.href = 'details';" >Ver todos los eventos. </a></div>
-      <div class="column"> <a class="button is-black" onclick="window.location.href = 'update';" >Ver detalles/Actualizar/Eliminar un evento. </a></div>
-      <!-- <div class="column"> <a class="button is-black" onclick="window.location.href = 'cancel';" >Cancelar evento. </a></div> -->
-      <!-- <div class="column"> <a class="button is-black" onclick="window.location.href = 'tag';" >Etiquetar evento </a></div> -->
-      <!-- <div class="column"> <a class="button is-black" onclick="window.location.href = 'staff';" >Asignar staff a un evento. </a></div> -->
-      <div class="column"> <a class="button is-black" onclick="window.location.href = 'cancelInvitation';" >Anular invitacion.</a></div>
   </div>
 
 

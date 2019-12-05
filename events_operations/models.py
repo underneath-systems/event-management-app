@@ -24,7 +24,6 @@ class Event(models.Model):
     start_date_time = models.DateTimeField(default=datetime.now, null=False, blank=False)
     end_date_time = models.DateTimeField(default=datetime.now, null=False, blank=False)
     address = models.CharField(max_length=100)
-    attendees_list = models.ManyToManyField(Attendees, blank=True)
     staff_list = models.ManyToManyField(Staff_event, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     capacity = models.IntegerField(default=10)
